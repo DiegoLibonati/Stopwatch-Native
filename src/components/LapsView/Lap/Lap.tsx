@@ -23,6 +23,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     padding: 25,
+    borderBottomWidth: 0.1,
+    borderTopWidth: 0,
+    shadowColor: "#000",
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    elevation: 1,
   },
   lapNumber: {
     textAlign: "center",
