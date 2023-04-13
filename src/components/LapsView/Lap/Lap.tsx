@@ -34,15 +34,15 @@ const styles = StyleSheet.create({
   lapNumber: {
     textAlign: "center",
     textAlignVertical: "center",
-    fontSize: 15,
+    fontSize: theme.fontSize.sm,
     width: 33,
     height: 33,
     borderRadius: 1000,
     borderWidth: 2,
-    color: theme.app.primaryColor,
-    borderColor: theme.app.primaryColor,
+    color: theme.colors.primaryColor,
+    borderColor: theme.colors.primaryColor,
   },
   lapTime: {
-    fontSize: 25,
+    fontSize: theme.fontSize.lg,
   },
 });

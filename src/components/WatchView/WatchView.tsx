@@ -1,4 +1,5 @@
 import { Image, StyleSheet, Text, View } from "react-native";
+import { theme } from "../../theme/theme";
 
 export const WatchView = () => {
   return (
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     width: 200,
   },
   clockText: {
-    fontSize: 35,
+    fontSize: theme.fontSize.xxl,
     fontWeight: "700",
   },
 });

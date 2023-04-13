@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     width: Dimensions.get("screen").width,
-    backgroundColor: theme.app.white,
+    backgroundColor: theme.colors.white,
   },
   touchable: {
     flex: 1,
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   buttonText: {
-    color: theme.app.primaryColor,
+    color: theme.colors.primaryColor,
     fontWeight: "700",
-    fontSize: 15,
+    fontSize: theme.fontSize.sm,
   },
 });
