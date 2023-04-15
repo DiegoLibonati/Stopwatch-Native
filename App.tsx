@@ -5,16 +5,22 @@ import { theme } from "./src/theme/theme";
 import { WatchView } from "./src/components/WatchView/WatchView";
 import { LapsView } from "./src/components/LapsView/LapsView";
 import { ButtonsView } from "./src/components/ButtonsView/ButtonsView";
+import { CronoProvider } from "./src/contexts/CronoContext";
+import { LapsProvider } from "./src/contexts/LapsContext";
 
 export default function App() {
   return (
     <>
       <StatusBar style="dark" />
-      <View style={styles.container}>
-        <WatchView></WatchView>
-        <LapsView></LapsView>
-        <ButtonsView></ButtonsView>
-      </View>
+      <LapsProvider>
+        <CronoProvider>
+          <View style={styles.container}>
+            <WatchView></WatchView>
+            <LapsView></LapsView>
+            <ButtonsView></ButtonsView>
+          </View>
+        </CronoProvider>
+      </LapsProvider>
     </>
   );
 }

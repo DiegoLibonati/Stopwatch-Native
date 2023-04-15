@@ -1,14 +1,17 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import { theme } from "../../theme/theme";
+import { CronoContext } from "../../contexts/CronoContext";
+import { useContext } from "react";
 
 export const WatchView = () => {
+  const { crono } = useContext(CronoContext);
   return (
     <View style={styles.container}>
       <Image
         source={require("../../../assets/clock-static.png")}
         style={styles.clockImage}
       ></Image>
-      <Text style={styles.clockText}>00:00:00</Text>
+      <Text style={styles.clockText}>{crono}</Text>
     </View>
   );
 };

@@ -6,20 +6,29 @@ import {
   View,
 } from "react-native";
 import { theme } from "../../theme/theme";
+import { useContext } from "react";
+import { CronoContext } from "../../contexts/CronoContext";
+import { LapsContext } from "../../contexts/LapsContext";
 
 export const ButtonsView = () => {
+  const { crono, startCrono } = useContext(CronoContext);
+  const { handleAddNewLap } = useContext(LapsContext);
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.touchable}>
         <Text style={styles.buttonText}>CLEAR</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.touchable}>
+      <TouchableOpacity
+        style={styles.touchable}
+        onPress={() => handleAddNewLap(crono)}
+      >
         <Text style={styles.buttonText}>LAP</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.touchable}>
-        <Text style={styles.buttonText}>STOP</Text>
+      <TouchableOpacity style={styles.touchable} onPress={() => startCrono()}>
+        <Text style={styles.buttonText}>START</Text>
       </TouchableOpacity>
     </View>
   );
