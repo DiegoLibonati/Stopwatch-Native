@@ -1,12 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
-import Constants from "expo-constants";
-import { theme } from "./src/theme/theme";
-import { WatchView } from "./src/components/WatchView/WatchView";
-import { LapsView } from "./src/components/LapsView/LapsView";
-import { ButtonsView } from "./src/components/ButtonsView/ButtonsView";
 import { CronoProvider } from "./src/contexts/CronoContext";
 import { LapsProvider } from "./src/contexts/LapsContext";
+import { UIProvider } from "./src/contexts/UIContext";
+import { MainPage } from "./src/pages/MainPage/MainPage";
 
 export default function App() {
   return (
@@ -14,21 +10,11 @@ export default function App() {
       <StatusBar style="dark" />
       <LapsProvider>
         <CronoProvider>
-          <View style={styles.container}>
-            <WatchView></WatchView>
-            <LapsView></LapsView>
-            <ButtonsView></ButtonsView>
-          </View>
+          <UIProvider>
+            <MainPage></MainPage>
+          </UIProvider>
         </CronoProvider>
       </LapsProvider>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: theme.app.backgroundColor,
-  },
-});
