@@ -21,8 +21,12 @@ export const LapsProvider: React.FunctionComponent<LapsContextProps> = ({
     ]);
   };
 
+  const handleClearLaps = () => {
+    return setLaps([]);
+  };
+
   return (
-    <LapsContext.Provider value={{ laps, handleAddNewLap }}>
+    <LapsContext.Provider value={{ laps, handleAddNewLap, handleClearLaps }}>
       {children}
     </LapsContext.Provider>
   );
