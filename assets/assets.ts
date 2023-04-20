@@ -1,7 +1,7 @@
 import clockStatic1 from "./clock-static.png";
 import clockOn1 from "./clock.gif";
 
-import clockClassicStatic from "./classic-static.png";
+import clockClassicStatic from "./classic_static.png";
 import clockClassicOn from "./classic_gif.gif";
 
 export const images = {

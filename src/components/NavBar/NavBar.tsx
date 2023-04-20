@@ -1,24 +1,17 @@
-import {
-  StyleSheet,
-  View,
-  Animated,
-  Image,
-  TouchableOpacity,
-  Text,
-} from "react-native";
+import { StyleSheet, View, Animated, Text } from "react-native";
 import Constants from "expo-constants";
 import { useContext } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { UIContext } from "../../contexts/UIContext";
 import { theme } from "../../theme/theme";
 import { CronoContext } from "../../contexts/CronoContext";
+import { SkinList } from "../SkinList/SkinList";
 
 export const NavBar = () => {
   const { widthAnim, closeNavBar } = useContext(UIContext);
-  const { image } = useContext(CronoContext);
 
   return (
-    <Animated.ScrollView
+    <Animated.View
       style={[
         styles.container,
         {
@@ -37,10 +30,8 @@ export const NavBar = () => {
 
       <Text style={styles.title}>SKINS</Text>
 
-      <TouchableOpacity style={styles.clockContainer}>
-        <Image source={image} style={styles.clockImage}></Image>
-      </TouchableOpacity>
-    </Animated.ScrollView>
+      <SkinList></SkinList>
+    </Animated.View>
   );
 };
 
@@ -62,14 +53,5 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontSize: theme.fontSize.xl,
     color: theme.colors.white,
-  },
-  clockContainer: {
-    backgroundColor: theme.colors.white,
-    borderRadius: 25,
-    margin: 5,
-  },
-  clockImage: {
-    height: 100,
-    width: 100,
   },
 });
