@@ -1,10 +1,9 @@
-import { StyleSheet, View, Animated, Text } from "react-native";
+import { StyleSheet, Animated, Text } from "react-native";
 import Constants from "expo-constants";
 import { useContext } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { UIContext } from "../../contexts/UIContext";
 import { theme } from "../../theme/theme";
-import { CronoContext } from "../../contexts/CronoContext";
 import { SkinList } from "../SkinList/SkinList";
 
 export const NavBar = () => {
@@ -44,6 +43,7 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight + 10,
     zIndex: 99,
     height: "100%",
+    paddingHorizontal: 5,
   },
   close: {
     alignSelf: "flex-end",

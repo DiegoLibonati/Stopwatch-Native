@@ -4,10 +4,14 @@ import { CronoContext } from "../../contexts/CronoContext";
 import { useContext } from "react";
 
 export const WatchView = () => {
-  const { crono, image } = useContext(CronoContext);
+  const { crono, image, intervalId } = useContext(CronoContext);
+
   return (
     <View style={styles.container}>
-      <Image source={image} style={styles.clockImage}></Image>
+      <Image
+        source={!intervalId ? image.static : image.dinamic}
+        style={styles.clockImage}
+      ></Image>
       <Text style={styles.clockText}>{crono.screen}</Text>
     </View>
   );

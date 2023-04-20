@@ -1,5 +1,5 @@
-import { createContext, useState, useEffect } from "react";
-import { images } from "../../assets/assets";
+import { createContext, useState } from "react";
+import { skins } from "../helpers/constants/data";
 
 interface CronoContextProps {
   children: React.ReactNode;
@@ -15,7 +15,7 @@ export const CronoProvider: React.FunctionComponent<CronoContextProps> = ({
     isOn: false,
   });
   const [intervalId, setIntervalId] = useState<NodeJS.Timer | null>(null);
-  const [image, setImage] = useState(images.clockOneStatic);
+  const [image, setImage] = useState(skins[0]);
 
   const startCrono = () => {
     if (intervalId) return;
@@ -77,17 +77,21 @@ export const CronoProvider: React.FunctionComponent<CronoContextProps> = ({
     });
   };
 
-  useEffect(() => {
-    if (intervalId) {
-      return setImage(images.clockOneOn);
-    } else {
-      return setImage(images.clockOneStatic);
-    }
-  }, [intervalId]);
+  const changeSkin = (skin: typeof image) => {
+    return setImage(skin);
+  };
 
   return (
     <CronoContext.Provider
-      value={{ crono, image, startCrono, clearCrono, stopCrono }}
+      value={{
+        crono,
+        image,
+        intervalId,
+        startCrono,
+        clearCrono,
+        stopCrono,
+        changeSkin,
+      }}
     >
       {children}
     </CronoContext.Provider>

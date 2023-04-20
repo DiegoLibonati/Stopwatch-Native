@@ -8,8 +8,12 @@ import {
 } from "react-native";
 import { skins } from "../../helpers/constants/data";
 import { theme } from "../../theme/theme";
+import { CronoContext } from "../../contexts/CronoContext";
+import { useContext } from "react";
 
 export const SkinList = () => {
+  const { changeSkin } = useContext(CronoContext);
+
   return (
     <FlatList
       data={skins}
@@ -18,7 +22,7 @@ export const SkinList = () => {
           <TouchableOpacity
             style={styles.clockContainer}
             key={item.id}
-            onPress={() => console.log(item)}
+            onPress={() => changeSkin(item)}
           >
             <Image source={item.dinamic} style={styles.clockImage}></Image>
             <Text style={styles.text}>{item.name}</Text>
@@ -36,9 +40,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: theme.colors.white,
     borderRadius: 25,
-    margin: 5,
+    marginVertical: 5,
     height: 100,
-    width: Dimensions.get("window").width,
+    width: "100%",
   },
   clockImage: {
     width: 100,

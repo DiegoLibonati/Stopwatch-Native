@@ -1,16 +1,14 @@
-import { images } from "../../../assets/assets";
-
 export const skins = [
   {
     id: "clock1",
     name: "Normal",
-    static: images.clockOneStatic,
-    dinamic: images.clockOneOn,
+    static: require("../../../assets/clock-static.png"),
+    dinamic: require("../../../assets/clock.gif"),
   },
   {
     id: "clock2",
     name: "Classic",
-    static: images.clockClassicStatic,
-    dinamic: images.clockClassicOn,
+    static: require("../../../assets/classic_static.png"),
+    dinamic: require("../../../assets/classic_gif.gif"),
   },
 ];
