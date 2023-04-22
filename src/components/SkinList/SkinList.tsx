@@ -45,12 +45,13 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   clockImage: {
-    width: 100,
+    flex: 1,
     height: 75,
-    margin: 5,
+    width: 75,
+    resizeMode: "contain",
   },
   text: {
+    flex: 3,
     fontSize: theme.fontSize.lg,
-    marginLeft: 25,
   },
 });
