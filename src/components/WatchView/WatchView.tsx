@@ -21,13 +21,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 0,
     alignItems: "center",
+    marginTop: 25,
   },
   clockImage: {
-    height: 200,
-    width: 200,
+    height: 150,
+    width: 150,
+    resizeMode: "contain",
   },
   clockText: {
     fontSize: theme.fontSize.xxl,
+    color: theme.colors.primaryColor,
     fontWeight: "700",
+    marginTop: 10,
   },
 });
