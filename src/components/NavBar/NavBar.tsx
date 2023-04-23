@@ -5,6 +5,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { UIContext } from "../../contexts/UIContext";
 import { theme } from "../../theme/theme";
 import { SkinList } from "../SkinList/SkinList";
+import { ModalSkin } from "../ModalSkin/ModalSkin";
 
 export const NavBar = () => {
   const { widthAnim, closeNavBar } = useContext(UIContext);
@@ -26,10 +27,9 @@ export const NavBar = () => {
         color={theme.colors.white}
         onPress={closeNavBar}
       />
-
       <Text style={styles.title}>SKINS</Text>
-
       <SkinList></SkinList>
+      <ModalSkin></ModalSkin>
     </Animated.View>
   );
 };

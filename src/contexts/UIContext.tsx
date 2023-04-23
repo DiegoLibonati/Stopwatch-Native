@@ -11,6 +11,7 @@ export const UIProvider: React.FunctionComponent<UIContextProps> = ({
   children,
 }) => {
   const [widthAnim] = useState(new Animated.Value(1000));
+  const [modal, setModal] = useState(false);
 
   const openNavBar = () => {
     return Animated.timing(widthAnim, {
@@ -28,8 +29,14 @@ export const UIProvider: React.FunctionComponent<UIContextProps> = ({
     }).start();
   };
 
+  const handleModal = (boolean: boolean) => {
+    return setModal(boolean);
+  };
+
   return (
-    <UIContext.Provider value={{ widthAnim, openNavBar, closeNavBar }}>
+    <UIContext.Provider
+      value={{ widthAnim, modal, openNavBar, closeNavBar, handleModal }}
+    >
       {children}
     </UIContext.Provider>
   );

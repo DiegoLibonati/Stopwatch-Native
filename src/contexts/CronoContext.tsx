@@ -47,7 +47,7 @@ export const CronoProvider: React.FunctionComponent<CronoContextProps> = ({
         screen: `${hoursAux}:${minutesAux}:${secondsAux}`,
         isOn: true,
       });
-    }, 300);
+    }, 1000);
 
     setIntervalId(interval);
   };

@@ -10,9 +10,11 @@ import { skins } from "../../helpers/constants/data";
 import { theme } from "../../theme/theme";
 import { CronoContext } from "../../contexts/CronoContext";
 import { useContext } from "react";
+import { UIContext } from "../../contexts/UIContext";
 
 export const SkinList = () => {
   const { changeSkin } = useContext(CronoContext);
+  const { handleModal } = useContext(UIContext);
 
   return (
     <FlatList
@@ -22,7 +24,10 @@ export const SkinList = () => {
           <TouchableOpacity
             style={styles.clockContainer}
             key={item.id}
-            onPress={() => changeSkin(item)}
+            onPress={() => {
+              changeSkin(item);
+              handleModal(true);
+            }}
           >
             <Image source={item.dinamic} style={styles.clockImage}></Image>
             <Text style={styles.text}>{item.name}</Text>
