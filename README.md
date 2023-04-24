@@ -42,6 +42,8 @@ https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Stopwatch%20Native
 
 ## Video
 
+https://user-images.githubusercontent.com/99032604/233884254-6a988dcb-243e-4efc-9d87-cd62da2fb7d5.mp4
+
 ## Documentation
 
 ### Theme
