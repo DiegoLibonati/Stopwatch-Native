@@ -26,19 +26,7 @@ In this native application you will be able to time each lap you do using the `l
 
 ## Portfolio Link
 
-https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Stopwatch%20Native%20App
-
-## Galery
-
-![REACT-NATIVE](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/React/Imagenes/stopwatch-react-native-0.jpg)
-
-![REACT-NATIVE](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/React/Imagenes/stopwatch-react-native-1.jpg)
-
-![REACT-NATIVE](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/React/Imagenes/stopwatch-react-native-2.jpg)
-
-![REACT-NATIVE](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/React/Imagenes/stopwatch-react-native-3.jpg)
-
-![REACT-NATIVE](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/React/Imagenes/stopwatch-react-native-4.jpg)
+[`https://www.diegolibonati.com.ar/#/project/16`](https://www.diegolibonati.com.ar/#/project/16)
 
 ## Video
 
