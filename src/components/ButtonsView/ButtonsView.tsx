@@ -10,9 +10,10 @@ import { useContext } from "react";
 import { CronoContext } from "../../contexts/CronoContext";
 import { LapsContext } from "../../contexts/LapsContext";
 
-export const ButtonsView = () => {
-  const { crono, startCrono, clearCrono, stopCrono } = useContext(CronoContext);
-  const { handleAddNewLap, handleClearLaps } = useContext(LapsContext);
+export const ButtonsView = (): JSX.Element => {
+  const { crono, startCrono, clearCrono, stopCrono } =
+    useContext(CronoContext)!;
+  const { handleAddNewLap, handleClearLaps } = useContext(LapsContext)!;
 
   return (
     <View style={styles.container}>

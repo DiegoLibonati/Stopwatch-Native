@@ -1,17 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import { theme } from "../../../theme/theme";
+import { LapProps } from "../../../types/entities";
 
-export const Lap = ({
-  lapNumber,
-  time,
-}: {
-  lapNumber: number;
-  time: string;
-}) => {
+export const Lap = ({ lap }: LapProps): JSX.Element => {
   return (
     <View style={styles.container}>
-      <Text style={styles.lapNumber}>{lapNumber}</Text>
-      <Text style={styles.lapTime}>{time}</Text>
+      <Text style={styles.lapNumber}>{lap.lapNumber}</Text>
+      <Text style={styles.lapTime}>{lap.time}</Text>
     </View>
   );
 };

@@ -1,5 +1,4 @@
 import {
-  Dimensions,
   FlatList,
   Image,
   StyleSheet,
@@ -12,9 +11,9 @@ import { CronoContext } from "../../contexts/CronoContext";
 import { useContext } from "react";
 import { UIContext } from "../../contexts/UIContext";
 
-export const SkinList = () => {
-  const { changeSkin } = useContext(CronoContext);
-  const { handleModal } = useContext(UIContext);
+export const SkinList = (): JSX.Element => {
+  const { changeSkin } = useContext(CronoContext)!;
+  const { handleModal } = useContext(UIContext)!;
 
   return (
     <FlatList

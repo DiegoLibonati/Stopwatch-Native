@@ -9,8 +9,8 @@ import { theme } from "../../theme/theme";
 import { UIContext } from "../../contexts/UIContext";
 import { NavBar } from "../../components/NavBar/NavBar";
 
-export const MainPage = () => {
-  const { openNavBar } = useContext(UIContext);
+export const MainPage = (): JSX.Element => {
+  const { openNavBar } = useContext(UIContext)!;
   return (
     <>
       <View style={styles.container}>

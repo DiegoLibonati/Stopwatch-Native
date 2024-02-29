@@ -1,17 +1,14 @@
 import { createContext, useState } from "react";
+import { Lap, LapsContextProps, LapsContextT } from "../types/entities";
 
-interface LapsContextProps {
-  children: React.ReactNode;
-}
-
-export const LapsContext = createContext<null | any>(null);
+export const LapsContext = createContext<LapsContextT | null>(null);
 
 export const LapsProvider: React.FunctionComponent<LapsContextProps> = ({
   children,
 }) => {
-  const [laps, setLaps] = useState<Record<string, number | string>[]>([]);
+  const [laps, setLaps] = useState<Lap[]>([]);
 
-  const handleAddNewLap = (timeLap: string) => {
+  const handleAddNewLap = (timeLap: string): void => {
     return setLaps([
       ...laps,
       {
@@ -21,7 +18,7 @@ export const LapsProvider: React.FunctionComponent<LapsContextProps> = ({
     ]);
   };
 
-  const handleClearLaps = () => {
+  const handleClearLaps = (): void => {
     return setLaps([]);
   };
 

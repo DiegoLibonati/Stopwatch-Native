@@ -36,7 +36,7 @@ https://user-images.githubusercontent.com/99032604/233884254-6a988dcb-243e-4efc-
 
 ### Theme
 
-- If you want to change any style or the entire styles of the application, you can do it through: `stopwatch-native-app\src\theme\theme.js`.
+- If you want to change any style or the entire styles of the application, you can do it through: `stopwatch-native-app\src\theme\theme.ts`.
 
 ### Types
 
@@ -44,11 +44,11 @@ https://user-images.githubusercontent.com/99032604/233884254-6a988dcb-243e-4efc-
 
 ### Contexts - Logic
 
-- The UI logic is changed to the following path: `src\contexts\UIContext.jsx`. Here the state is mounted to open or close the modal, it also takes care of the logic of the navbar.
+- The UI logic is changed to the following path: `src\contexts\UIContext.tsx`. Here the state is mounted to open or close the modal, it also takes care of the logic of the navbar.
 
-- Crono logic is changed in the following path: `src\contexts\CronoContext.jsx`. It is in charge of managing the stopwatch and the functions executed by the buttons to manipulate said stopwatch, such as starting and stopping.
+- Crono logic is changed in the following path: `src\contexts\CronoContext.tsx`. It is in charge of managing the stopwatch and the functions executed by the buttons to manipulate said stopwatch, such as starting and stopping.
 
-- Changed the Laps logic in the following path: `src\contexts\LapsContext.jsx`. In this context new laps are added and all are cleared. If the `laps` state is an array that is in charge of containing objects, these objects will contain the information of each `lap`.
+- Changed the Laps logic in the following path: `src\contexts\LapsContext.tsx`. In this context new laps are added and all are cleared. If the `laps` state is an array that is in charge of containing objects, these objects will contain the information of each `lap`.
 
 ### Skins
 

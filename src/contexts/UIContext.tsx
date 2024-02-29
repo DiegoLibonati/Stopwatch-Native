@@ -1,19 +1,16 @@
 import { createContext, useState } from "react";
-import { Animated, Dimensions } from "react-native";
+import { Animated } from "react-native";
+import { UIContextProps, UiContextT } from "../types/entities";
 
-interface UIContextProps {
-  children: React.ReactNode;
-}
-
-export const UIContext = createContext<null | any>(null);
+export const UIContext = createContext<UiContextT | null>(null);
 
 export const UIProvider: React.FunctionComponent<UIContextProps> = ({
   children,
 }) => {
-  const [widthAnim] = useState(new Animated.Value(1000));
-  const [modal, setModal] = useState(false);
+  const [widthAnim] = useState<Animated.Value>(new Animated.Value(1000));
+  const [modal, setModal] = useState<boolean>(false);
 
-  const openNavBar = () => {
+  const openNavBar = (): void => {
     return Animated.timing(widthAnim, {
       toValue: 0,
       duration: 250,
@@ -21,7 +18,7 @@ export const UIProvider: React.FunctionComponent<UIContextProps> = ({
     }).start();
   };
 
-  const closeNavBar = () => {
+  const closeNavBar = (): void => {
     return Animated.timing(widthAnim, {
       toValue: 5000,
       duration: 250,
@@ -29,7 +26,7 @@ export const UIProvider: React.FunctionComponent<UIContextProps> = ({
     }).start();
   };
 
-  const handleModal = (boolean: boolean) => {
+  const handleModal = (boolean: boolean): void => {
     return setModal(boolean);
   };
 

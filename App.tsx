@@ -4,7 +4,7 @@ import { LapsProvider } from "./src/contexts/LapsContext";
 import { UIProvider } from "./src/contexts/UIContext";
 import { MainPage } from "./src/pages/MainPage/MainPage";
 
-export default function App() {
+export default function App(): JSX.Element {
   return (
     <>
       <StatusBar style="dark" />

@@ -3,8 +3,8 @@ import { theme } from "../../theme/theme";
 import { StyleSheet, Text, View, Modal, Pressable } from "react-native";
 import { UIContext } from "../../contexts/UIContext";
 
-export const ModalSkin = () => {
-  const { modal, handleModal } = useContext(UIContext);
+export const ModalSkin = (): JSX.Element => {
+  const { modal, handleModal } = useContext(UIContext)!;
   return (
     <View style={styles.centeredView}>
       <Modal animationType="fade" transparent={true} visible={modal}>

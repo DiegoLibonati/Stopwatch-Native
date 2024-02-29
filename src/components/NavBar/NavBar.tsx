@@ -7,8 +7,8 @@ import { theme } from "../../theme/theme";
 import { SkinList } from "../SkinList/SkinList";
 import { ModalSkin } from "../ModalSkin/ModalSkin";
 
-export const NavBar = () => {
-  const { widthAnim, closeNavBar } = useContext(UIContext);
+export const NavBar = (): JSX.Element => {
+  const { widthAnim, closeNavBar } = useContext(UIContext)!;
 
   return (
     <Animated.View

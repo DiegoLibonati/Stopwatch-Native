@@ -1,4 +1,6 @@
-export const skins = [
+import { Skin } from "../../types/entities";
+
+export const skins: Skin[] = [
   {
     id: "clock1",
     name: "Normal",

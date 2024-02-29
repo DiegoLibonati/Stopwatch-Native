@@ -3,8 +3,8 @@ import { theme } from "../../theme/theme";
 import { CronoContext } from "../../contexts/CronoContext";
 import { useContext } from "react";
 
-export const WatchView = () => {
-  const { crono, image, intervalId } = useContext(CronoContext);
+export const WatchView = (): JSX.Element => {
+  const { crono, image, intervalId } = useContext(CronoContext)!;
 
   return (
     <View style={styles.container}>
