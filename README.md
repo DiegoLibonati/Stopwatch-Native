@@ -1,4 +1,4 @@
-# Stopwatch-Native-App
+# Stopwatch Native
 
 ## Getting Started
 
@@ -26,7 +26,7 @@ In this native application you will be able to time each lap you do using the `l
 
 ## Portfolio Link
 
-[`https://www.diegolibonati.com.ar/#/project/16`](https://www.diegolibonati.com.ar/#/project/16)
+[`https://www.diegolibonati.com.ar/#/project/Stopwatch-Native`](https://www.diegolibonati.com.ar/#/project/Stopwatch-Native)
 
 ## Video
 
