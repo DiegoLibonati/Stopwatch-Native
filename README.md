@@ -4,8 +4,8 @@
 
 1. Clone the repository on your computer using: `git clone URL`.
 2. Go to the APP directory.
-3. Install dependencies using `yarn install`.
-4. If you have expo and an Android simulator installed, you can run the app with the command `yarn start` and select the desired option.
+3. Execute: `yarn install` or `npm install`
+4. Execute: `yarn start` or `npm start` and select the desired option!
 
 - If you don't have expo and an Android simulator installed, search for a tutorial on YouTube.
 
@@ -22,7 +22,30 @@ In this native application you will be able to time each lap you do using the `l
 
 ## Libraries used
 
-1. Expo
+#### Dependencies
+
+```
+"@types/jest": "^29.5.13"
+"@types/node": "^20.10.6"
+"@types/react": "~18.3.12"
+"expo": "^52.0.0"
+"expo-image": "^2.0.3"
+"expo-modules-core": "~2.1.2"
+"expo-status-bar": "~2.0.0"
+"react": "18.3.1"
+"react-native": "0.76.5"
+"react-native-reanimated": "^3.16.6"
+```
+
+#### devDependencies
+
+```
+"@babel/core": "^7.20.0"
+"@testing-library/react-native": "^12.1.2"
+"jest": "^29.7.0"
+"jest-expo": "^52.0.0"
+"typescript": "^5.1.3"
+```
 
 ## Portfolio Link
 
@@ -32,24 +55,7 @@ In this native application you will be able to time each lap you do using the `l
 
 https://user-images.githubusercontent.com/99032604/233884254-6a988dcb-243e-4efc-9d87-cd62da2fb7d5.mp4
 
-## Documentation
+## Testing
 
-### Theme
-
-- If you want to change any style or the entire styles of the application, you can do it through: `stopwatch-native-app\src\theme\theme.ts`.
-
-### Types
-
-- If you want to change any type or the entire types of the application, you can do it through: `stopwatch-native-app\src\types`.
-
-### Contexts - Logic
-
-- The UI logic is changed to the following path: `src\contexts\UIContext.tsx`. Here the state is mounted to open or close the modal, it also takes care of the logic of the navbar.
-
-- Crono logic is changed in the following path: `src\contexts\CronoContext.tsx`. It is in charge of managing the stopwatch and the functions executed by the buttons to manipulate said stopwatch, such as starting and stopping.
-
-- Changed the Laps logic in the following path: `src\contexts\LapsContext.tsx`. In this context new laps are added and all are cleared. If the `laps` state is an array that is in charge of containing objects, these objects will contain the information of each `lap`.
-
-### Skins
-
-- To add new skins you must go to `src\helpers\data.ts`. Here the new skin will be added, to add a new skin it is a priority to first add a gif and a png in the `assets` folder since the files will be required from here to be able to render said skin.
+1. Join to the correct path of the clone
+2. Execute: `yarn test` or `npm test`

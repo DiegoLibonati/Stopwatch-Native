@@ -1,19 +1,21 @@
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from "react-native";
-import { skins } from "../../helpers/constants/data";
+import { FlatList, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Image } from "expo-image";
+
+import { Skin } from "../../entities/entities";
+
+import { useCronoContext } from "../../contexts/CronoContext";
+import { useUiContext } from "../../contexts/UiContext";
+import { skins } from "../../constants/data";
 import { theme } from "../../theme/theme";
-import { CronoContext } from "../../contexts/CronoContext";
-import { useContext } from "react";
-import { UIContext } from "../../contexts/UIContext";
 
 export const SkinList = (): JSX.Element => {
-  const { changeSkin } = useContext(CronoContext)!;
-  const { handleModal } = useContext(UIContext)!;
+  const { changeSkin } = useCronoContext();
+  const { openModal } = useUiContext();
+
+  const handlePressSkin = (skin: Skin): void => {
+    changeSkin(skin);
+    openModal("Skin changed");
+  };
 
   return (
     <FlatList
@@ -21,14 +23,16 @@ export const SkinList = (): JSX.Element => {
       renderItem={({ item }) => {
         return (
           <TouchableOpacity
-            style={styles.clockContainer}
             key={item.id}
-            onPress={() => {
-              changeSkin(item);
-              handleModal(true);
-            }}
+            style={styles.clockContainer}
+            testID="skin"
+            onPress={() => handlePressSkin(item)}
           >
-            <Image source={item.dinamic} style={styles.clockImage}></Image>
+            <Image
+              source={item.dinamic}
+              style={styles.clockImage}
+              contentFit="contain"
+            ></Image>
             <Text style={styles.text}>{item.name}</Text>
           </TouchableOpacity>
         );

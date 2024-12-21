@@ -5,44 +5,56 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+
+import { useCronoContext } from "../../contexts/CronoContext";
+import { useLapsContext } from "../../contexts/LapsContext";
 import { theme } from "../../theme/theme";
-import { useContext } from "react";
-import { CronoContext } from "../../contexts/CronoContext";
-import { LapsContext } from "../../contexts/LapsContext";
 
 export const ButtonsView = (): JSX.Element => {
-  const { crono, startCrono, clearCrono, stopCrono } =
-    useContext(CronoContext)!;
-  const { handleAddNewLap, handleClearLaps } = useContext(LapsContext)!;
+  const { cronoState, startCrono, clearCrono, stopCrono } = useCronoContext();
+  const { addNewLap, clearLaps } = useLapsContext();
+
+  const handlePressClear = (): void => {
+    clearLaps();
+    clearCrono();
+  };
+
+  const handlePressLap = (): void => {
+    addNewLap(cronoState.timer);
+  };
+
+  const handlePressStartOrStop = (): void => {
+    if (cronoState.isTimerOn) return stopCrono();
+    return startCrono();
+  };
 
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.touchable}
-        onPress={() => {
-          handleClearLaps();
-          clearCrono();
-        }}
+        onPress={handlePressClear}
+        testID="clear-touchable"
       >
         <Text style={styles.buttonText}>CLEAR</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.touchable}
-        onPress={() => handleAddNewLap(crono.screen)}
+        onPress={handlePressLap}
+        testID="lap-touchable"
       >
         <Text style={styles.buttonText}>LAP</Text>
       </TouchableOpacity>
 
-      {crono.isOn ? (
-        <TouchableOpacity style={styles.touchable} onPress={() => stopCrono()}>
-          <Text style={styles.buttonText}>STOP</Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity style={styles.touchable} onPress={() => startCrono()}>
-          <Text style={styles.buttonText}>START</Text>
-        </TouchableOpacity>
-      )}
+      <TouchableOpacity
+        style={styles.touchable}
+        onPress={handlePressStartOrStop}
+        testID="stop-or-and-touchable"
+      >
+        <Text style={styles.buttonText}>
+          {cronoState.isTimerOn ? "STOP" : "START"}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };

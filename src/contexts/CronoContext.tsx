@@ -1,28 +1,35 @@
-import { createContext, useState } from "react";
-import { skins } from "../helpers/constants/data";
+import { createContext, useContext, useState } from "react";
+
 import {
-  Crono,
-  CronoContextProps,
-  CronoContextT,
+  CronoState,
   Skin,
-} from "../types/entities";
+  CronoContext as CronoContextT,
+} from "../entities/entities";
+
+import { skins } from "../constants/data";
+
+interface CronoContextProps {
+  children: React.ReactNode;
+}
 
 export const CronoContext = createContext<CronoContextT | null>(null);
 
 export const CronoProvider: React.FunctionComponent<CronoContextProps> = ({
   children,
 }) => {
-  const [crono, setCrono] = useState<Crono>({
-    screen: "00:00:00",
-    isOn: false,
+  const [cronoState, setCronoState] = useState<CronoState>({
+    timer: "00:00:00",
+    isTimerOn: false,
+    idInterval: null,
+    currentSkin: skins[0],
   });
-  const [intervalId, setIntervalId] = useState<NodeJS.Timer | null>(null);
-  const [image, setImage] = useState<Skin>(skins[0]);
 
   const startCrono = (): void => {
-    if (intervalId) return;
+    const { timer, idInterval } = cronoState;
 
-    const timeSplit = crono.screen.split(":");
+    if (idInterval) return;
+
+    const timeSplit = timer.split(":");
 
     let hours = Number(timeSplit[0]) ? Number(timeSplit[0]) : 0;
     let minutes = Number(timeSplit[1]) ? Number(timeSplit[1]) : 0;
@@ -45,57 +52,63 @@ export const CronoProvider: React.FunctionComponent<CronoContextProps> = ({
       const minutesAux = minutes < 10 ? `0${minutes}` : minutes;
       const hoursAux = hours < 10 ? `0${hours}` : hours;
 
-      setCrono({
-        screen: `${hoursAux}:${minutesAux}:${secondsAux}`,
-        isOn: true,
-      });
+      setCronoState((state) => ({
+        ...state,
+        timer: `${hoursAux}:${minutesAux}:${secondsAux}`,
+        isTimerOn: true,
+      }));
     }, 1000);
 
-    setIntervalId(interval);
+    setCronoState((state) => ({
+      ...state,
+      idInterval: interval,
+    }));
   };
 
   const clearCrono = (): void => {
-    if (intervalId) {
-      clearInterval(intervalId);
-      setIntervalId(null);
-      return setCrono({
-        screen: "00:00:00",
-        isOn: false,
-      });
-    }
+    const { idInterval } = cronoState;
 
-    return setCrono({
-      screen: "00:00:00",
-      isOn: false,
-    });
+    clearInterval(idInterval!);
+
+    return setCronoState((state) => ({
+      ...state,
+      timer: "00:00:00",
+      isTimerOn: false,
+      idInterval: null,
+    }));
   };
 
   const stopCrono = (): void => {
-    clearInterval(intervalId!);
-    setIntervalId(null);
-    return setCrono({
-      ...crono,
-      isOn: false,
-    });
+    const { idInterval } = cronoState;
+
+    clearInterval(idInterval!);
+
+    return setCronoState((state) => ({
+      ...state,
+      isTimerOn: false,
+      idInterval: null,
+    }));
   };
 
   const changeSkin = (skin: Skin): void => {
-    return setImage(skin);
+    return setCronoState((state) => ({ ...state, currentSkin: skin }));
   };
 
   return (
     <CronoContext.Provider
       value={{
-        crono,
-        image,
-        intervalId,
-        startCrono,
-        clearCrono,
-        stopCrono,
-        changeSkin,
+        cronoState: cronoState,
+        startCrono: startCrono,
+        clearCrono: clearCrono,
+        stopCrono: stopCrono,
+        changeSkin: changeSkin,
       }}
     >
       {children}
     </CronoContext.Provider>
   );
+};
+
+export const useCronoContext = (): CronoContextT => {
+  return useContext(CronoContext)!;
 };

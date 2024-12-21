@@ -1,18 +1,25 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { Image } from "expo-image";
+
+import { useCronoContext } from "../../contexts/CronoContext";
 import { theme } from "../../theme/theme";
-import { CronoContext } from "../../contexts/CronoContext";
-import { useContext } from "react";
 
 export const WatchView = (): JSX.Element => {
-  const { crono, image, intervalId } = useContext(CronoContext)!;
+  const { cronoState } = useCronoContext();
 
   return (
     <View style={styles.container}>
       <Image
-        source={!intervalId ? image.static : image.dinamic}
+        source={
+          !cronoState.idInterval
+            ? cronoState.currentSkin.static
+            : cronoState.currentSkin.dinamic
+        }
         style={styles.clockImage}
+        contentFit="contain"
+        testID="skin-image"
       ></Image>
-      <Text style={styles.clockText}>{crono.screen}</Text>
+      <Text style={styles.clockText}>{cronoState.timer}</Text>
     </View>
   );
 };
@@ -26,7 +33,6 @@ const styles = StyleSheet.create({
   clockImage: {
     height: 150,
     width: 150,
-    resizeMode: "contain",
   },
   clockText: {
     fontSize: theme.fontSize.xxl,

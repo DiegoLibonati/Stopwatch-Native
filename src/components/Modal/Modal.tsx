@@ -1,35 +1,49 @@
-import React, { useContext } from "react";
-import { theme } from "../../theme/theme";
-import { StyleSheet, Text, View, Modal, Pressable } from "react-native";
-import { UIContext } from "../../contexts/UIContext";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Modal as ModalExpo,
+  Pressable,
+} from "react-native";
 
-export const ModalSkin = (): JSX.Element => {
-  const { modal, handleModal } = useContext(UIContext)!;
+import { useUiContext } from "../../contexts/UiContext";
+import { theme } from "../../theme/theme";
+
+export const Modal = (): JSX.Element => {
+  const { uiState, closeModal } = useUiContext();
+
+  const handlePressClose = (): void => {
+    closeModal();
+  };
+
   return (
     <View style={styles.centeredView}>
-      <Modal animationType="fade" transparent={true} visible={modal}>
-        <View style={styles.centeredView}>
+      <ModalExpo
+        animationType="fade"
+        transparent={true}
+        visible={uiState.modal.isModalOpen}
+      >
+        <View style={{ ...styles.centeredView, ...styles.rootModalView }}>
           <View style={styles.modalView}>
-            <Text style={styles.textModal}>Skin changed</Text>
-            <Pressable
-              onPress={() => handleModal(false)}
-              style={styles.buttonModal}
-            >
+            <Text style={styles.textModal}>{uiState.modal.content}</Text>
+            <Pressable onPress={handlePressClose} style={styles.buttonModal}>
               <Text style={styles.textButtonModal}>Close</Text>
             </Pressable>
           </View>
         </View>
-      </Modal>
+      </ModalExpo>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  rootModalView: {
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
   centeredView: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
   },
   modalView: {
     margin: 20,

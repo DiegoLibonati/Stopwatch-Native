@@ -1,6 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
+
+import { Lap as LapT } from "../../../entities/entities";
+
 import { theme } from "../../../theme/theme";
-import { LapProps } from "../../../types/entities";
+
+interface LapProps {
+  lap: LapT;
+}
 
 export const Lap = ({ lap }: LapProps): JSX.Element => {
   return (

@@ -1,35 +1,51 @@
-import { StyleSheet, Animated, Text } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import Constants from "expo-constants";
-import { useContext } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { UIContext } from "../../contexts/UIContext";
-import { theme } from "../../theme/theme";
+import Animated, {
+  useAnimatedStyle,
+  withTiming,
+} from "react-native-reanimated";
+
 import { SkinList } from "../SkinList/SkinList";
-import { ModalSkin } from "../ModalSkin/ModalSkin";
+import { Modal } from "../Modal/Modal";
+
+import { useUiContext } from "../../contexts/UiContext";
+import { BEZIER_250 } from "../../constants/style";
+import { theme } from "../../theme/theme";
 
 export const NavBar = (): JSX.Element => {
-  const { widthAnim, closeNavBar } = useContext(UIContext)!;
+  const { uiState, closeNavBar } = useUiContext();
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          translateX: withTiming(
+            uiState.navBar.isNavBarOpen ? 0 : 5000,
+            BEZIER_250
+          ),
+        },
+      ],
+      opacity: withTiming(uiState.navBar.isNavBarOpen ? 1 : 0, BEZIER_250),
+    };
+  });
+
+  const handlePressClose = () => {
+    closeNavBar();
+  };
 
   return (
-    <Animated.View
-      style={[
-        styles.container,
-        {
-          transform: [{ translateX: widthAnim }],
-          width: "100%",
-        },
-      ]}
-    >
-      <Ionicons
+    <Animated.View style={[styles.container, animatedStyle]}>
+      <TouchableOpacity
         style={styles.close}
-        name="close"
-        size={30}
-        color={theme.colors.white}
-        onPress={closeNavBar}
-      />
+        onPress={handlePressClose}
+        testID="close-navbar"
+      >
+        <Ionicons name="close" size={30} color={theme.colors.white} />
+      </TouchableOpacity>
       <Text style={styles.title}>SKINS</Text>
       <SkinList></SkinList>
-      <ModalSkin></ModalSkin>
+      <Modal></Modal>
     </Animated.View>
   );
 };
@@ -43,6 +59,7 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight + 10,
     zIndex: 99,
     height: "100%",
+    width: "100%",
     paddingHorizontal: 5,
   },
   close: {

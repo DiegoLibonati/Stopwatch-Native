@@ -1,30 +1,50 @@
-import { createContext, useState } from "react";
-import { Lap, LapsContextProps, LapsContextT } from "../types/entities";
+import { createContext, useContext, useState } from "react";
+
+import { LapsContext as LapsContextT, LapsState } from "../entities/entities";
+
+interface LapsContextProps {
+  children: React.ReactNode;
+}
 
 export const LapsContext = createContext<LapsContextT | null>(null);
 
 export const LapsProvider: React.FunctionComponent<LapsContextProps> = ({
   children,
 }) => {
-  const [laps, setLaps] = useState<Lap[]>([]);
+  const [lapsState, setLapsState] = useState<LapsState>({
+    laps: [],
+  });
 
-  const handleAddNewLap = (timeLap: string): void => {
-    return setLaps([
-      ...laps,
-      {
-        lapNumber: laps.length + 1,
-        time: timeLap,
-      },
-    ]);
+  const addNewLap = (timeLap: string): void => {
+    return setLapsState((state) => ({
+      ...state,
+      laps: [
+        ...state.laps,
+        {
+          lapNumber: state.laps.length + 1,
+          time: timeLap,
+        },
+      ],
+    }));
   };
 
-  const handleClearLaps = (): void => {
-    return setLaps([]);
+  const clearLaps = (): void => {
+    return setLapsState((state) => ({ ...state, laps: [] }));
   };
 
   return (
-    <LapsContext.Provider value={{ laps, handleAddNewLap, handleClearLaps }}>
+    <LapsContext.Provider
+      value={{
+        lapsState: lapsState,
+        addNewLap: addNewLap,
+        clearLaps: clearLaps,
+      }}
+    >
       {children}
     </LapsContext.Provider>
   );
+};
+
+export const useLapsContext = (): LapsContextT => {
+  return useContext(LapsContext)!;
 };

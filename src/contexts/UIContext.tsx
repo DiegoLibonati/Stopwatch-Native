@@ -1,40 +1,69 @@
-import { createContext, useState } from "react";
-import { Animated } from "react-native";
-import { UIContextProps, UiContextT } from "../types/entities";
+import { createContext, useContext, useState } from "react";
 
-export const UIContext = createContext<UiContextT | null>(null);
+import { UiContext as UiContextT, UiState } from "../entities/entities";
 
-export const UIProvider: React.FunctionComponent<UIContextProps> = ({
+interface UiContextProps {
+  children: React.ReactNode;
+}
+
+export const UiContext = createContext<UiContextT | null>(null);
+
+export const UiProvider: React.FunctionComponent<UiContextProps> = ({
   children,
 }) => {
-  const [widthAnim] = useState<Animated.Value>(new Animated.Value(1000));
-  const [modal, setModal] = useState<boolean>(false);
+  const [uiState, setUiState] = useState<UiState>({
+    navBar: {
+      isNavBarOpen: false,
+    },
+    modal: {
+      isModalOpen: false,
+      content: "",
+    },
+  });
 
   const openNavBar = (): void => {
-    return Animated.timing(widthAnim, {
-      toValue: 0,
-      duration: 250,
-      useNativeDriver: false,
-    }).start();
+    return setUiState((state) => ({
+      ...state,
+      navBar: { ...state.navBar, isNavBarOpen: true },
+    }));
   };
 
   const closeNavBar = (): void => {
-    return Animated.timing(widthAnim, {
-      toValue: 5000,
-      duration: 250,
-      useNativeDriver: false,
-    }).start();
+    return setUiState((state) => ({
+      ...state,
+      navBar: { ...state.navBar, isNavBarOpen: false },
+    }));
   };
 
-  const handleModal = (boolean: boolean): void => {
-    return setModal(boolean);
+  const openModal = (content: string): void => {
+    return setUiState((state) => ({
+      ...state,
+      modal: { ...state.modal, isModalOpen: true, content: content },
+    }));
+  };
+
+  const closeModal = (): void => {
+    return setUiState((state) => ({
+      ...state,
+      modal: { ...state.modal, isModalOpen: false, content: "" },
+    }));
   };
 
   return (
-    <UIContext.Provider
-      value={{ widthAnim, modal, openNavBar, closeNavBar, handleModal }}
+    <UiContext.Provider
+      value={{
+        uiState: uiState,
+        openNavBar: openNavBar,
+        closeNavBar: closeNavBar,
+        openModal: openModal,
+        closeModal: closeModal,
+      }}
     >
       {children}
-    </UIContext.Provider>
+    </UiContext.Provider>
   );
+};
+
+export const useUiContext = (): UiContextT => {
+  return useContext(UiContext)!;
 };
