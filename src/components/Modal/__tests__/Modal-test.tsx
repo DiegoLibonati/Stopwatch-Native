@@ -6,16 +6,9 @@ import { Modal } from "../Modal";
 
 import { UiProvider, useUiContext } from "../../../contexts/UiContext";
 
-import { getMockUiState, MOCK_UI_STATE } from "../../../tests/jest.setup";
+import { getMockUiState, mockUiState } from "../../../tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
-
-const mockCloseModal = jest.fn();
-
-jest.mock("../../../contexts/UiContext", () => ({
-  ...jest.requireActual("../../../contexts/UiContext"),
-  useUiContext: jest.fn(),
-}));
 
 const renderComponent = (): RenderComponent => {
   const { debug, getByText, getByRole, getByTestId, queryByText } = render(
@@ -37,64 +30,141 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-describe("If key isModalOpen is false", () => {
-  const isModalOpen = false;
-  const content = "234";
+jest.mock("../../../contexts/UiContext", () => ({
+  ...jest.requireActual("../../../contexts/UiContext"),
+  useUiContext: jest.fn(),
+}));
 
-  beforeEach(() => {
-    jest.clearAllMocks();
+describe("Modal.tsx", () => {
+  describe("If key isModalOpen is false", () => {
+    const isModalOpen = false;
+    const content = "234";
 
-    (useUiContext as jest.Mock).mockReturnValue({
-      uiState: getMockUiState({
-        ...MOCK_UI_STATE,
-        modal: { isModalOpen: isModalOpen, content: content },
-      }),
-      closeModal: mockCloseModal,
+    const mockCloseModal = jest.fn();
+
+    beforeEach(() => {
+      jest.clearAllMocks();
+
+      (useUiContext as jest.Mock).mockReturnValue({
+        uiState: getMockUiState({
+          ...mockUiState,
+          modal: { isModalOpen: isModalOpen, content: content },
+        }),
+        closeModal: mockCloseModal,
+      });
+    });
+
+    test("It should not render the content of the modal.", () => {
+      const { querys } = renderComponent();
+
+      const contentModal = querys!.queryByText!(content);
+
+      expect(contentModal).toBeFalsy();
     });
   });
 
-  test("It should not render the content of the modal.", () => {
-    const { querys } = renderComponent();
+  describe("If key isModalOpen is true", () => {
+    const isModalOpen = true;
+    const content = "1234";
 
-    const contentModal = querys!.queryByText!(content);
+    const mockCloseModal = jest.fn();
 
-    expect(contentModal).toBeFalsy();
-  });
-});
+    beforeEach(() => {
+      jest.clearAllMocks();
 
-describe("If key isModalOpen is true", () => {
-  const isModalOpen = true;
-  const content = "1234";
+      (useUiContext as jest.Mock).mockReturnValue({
+        uiState: getMockUiState({
+          ...mockUiState,
+          modal: { isModalOpen: isModalOpen, content: content },
+        }),
+        closeModal: mockCloseModal,
+      });
+    });
 
-  beforeEach(() => {
-    jest.clearAllMocks();
+    test("It must render the content of the modal.", () => {
+      const { gets } = renderComponent();
 
-    (useUiContext as jest.Mock).mockReturnValue({
-      uiState: getMockUiState({
-        ...MOCK_UI_STATE,
-        modal: { isModalOpen: isModalOpen, content: content },
-      }),
-      closeModal: mockCloseModal,
+      const contentModal = gets!.getByText!(content);
+
+      expect(contentModal).toBeTruthy();
+    });
+
+    test("It must render the close button. Also execute the relevant functions when pressed.", () => {
+      const { gets } = renderComponent();
+
+      const pressableClose = gets!.getByText!("Close");
+
+      expect(pressableClose).toBeTruthy();
+
+      fireEvent.press(pressableClose);
+
+      expect(mockCloseModal).toHaveBeenCalledTimes(1);
     });
   });
 
-  test("It must render the content of the modal.", () => {
-    const { gets } = renderComponent();
+  describe("If key isModalOpen is false", () => {
+    const isModalOpen = false;
+    const content = "234";
 
-    const contentModal = gets!.getByText!(content);
+    const mockCloseModal = jest.fn();
 
-    expect(contentModal).toBeTruthy();
+    beforeEach(() => {
+      jest.clearAllMocks();
+
+      (useUiContext as jest.Mock).mockReturnValue({
+        uiState: getMockUiState({
+          ...mockUiState,
+          modal: { isModalOpen: isModalOpen, content: content },
+        }),
+        closeModal: mockCloseModal,
+      });
+    });
+
+    test("It should not render the content of the modal.", () => {
+      const { querys } = renderComponent();
+
+      const contentModal = querys!.queryByText!(content);
+
+      expect(contentModal).toBeFalsy();
+    });
   });
 
-  test("It must render the close button. Also execute the relevant functions when pressed.", () => {
-    const { gets } = renderComponent();
+  describe("If key isModalOpen is true", () => {
+    const isModalOpen = true;
+    const content = "1234";
 
-    const pressableClose = gets!.getByText!("Close");
+    const mockCloseModal = jest.fn();
 
-    expect(pressableClose).toBeTruthy();
+    beforeEach(() => {
+      jest.clearAllMocks();
 
-    fireEvent.press(pressableClose);
+      (useUiContext as jest.Mock).mockReturnValue({
+        uiState: getMockUiState({
+          ...mockUiState,
+          modal: { isModalOpen: isModalOpen, content: content },
+        }),
+        closeModal: mockCloseModal,
+      });
+    });
 
-    expect(mockCloseModal).toHaveBeenCalledTimes(1);
+    test("It must render the content of the modal.", () => {
+      const { gets } = renderComponent();
+
+      const contentModal = gets!.getByText!(content);
+
+      expect(contentModal).toBeTruthy();
+    });
+
+    test("It must render the close button. Also execute the relevant functions when pressed.", () => {
+      const { gets } = renderComponent();
+
+      const pressableClose = gets!.getByText!("Close");
+
+      expect(pressableClose).toBeTruthy();
+
+      fireEvent.press(pressableClose);
+
+      expect(mockCloseModal).toHaveBeenCalledTimes(1);
+    });
   });
 });

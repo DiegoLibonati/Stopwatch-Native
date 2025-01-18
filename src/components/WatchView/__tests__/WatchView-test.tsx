@@ -6,22 +6,12 @@ import { WatchView } from "../WatchView";
 
 import { CronoProvider, useCronoContext } from "../../../contexts/CronoContext";
 
-import { getMockCronoState, MOCK_CRONO_STATE } from "../../../tests/jest.setup";
+import {
+  getMockCronoState,
+  mockCronoState,
+} from "../../../tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
-
-jest.mock("../../../contexts/CronoContext", () => ({
-  ...jest.requireActual("../../../contexts/CronoContext"),
-  useCronoContext: jest.fn(),
-}));
-
-beforeEach(() => {
-  jest.clearAllMocks();
-
-  (useCronoContext as jest.Mock).mockReturnValue({
-    cronoState: getMockCronoState(MOCK_CRONO_STATE),
-  });
-});
 
 const renderComponent = (): RenderComponent => {
   const {
@@ -51,12 +41,29 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-test("It must render all of the skins.", () => {
-  const { gets } = renderComponent();
+jest.mock("../../../contexts/CronoContext", () => ({
+  ...jest.requireActual("../../../contexts/CronoContext"),
+  useCronoContext: jest.fn(),
+}));
 
-  const image = gets!.getByTestId!("skin-image");
-  const timer = gets!.getByText!(MOCK_CRONO_STATE.timer);
+describe("WatchView.tsx", () => {
+  describe("General Tests.", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
 
-  expect(image).toBeTruthy();
-  expect(timer).toBeTruthy();
+      (useCronoContext as jest.Mock).mockReturnValue({
+        cronoState: getMockCronoState(mockCronoState),
+      });
+    });
+
+    test("It must render all of the skins.", () => {
+      const { gets } = renderComponent();
+
+      const image = gets!.getByTestId!("skin-image");
+      const timer = gets!.getByText!(mockCronoState.timer);
+
+      expect(image).toBeTruthy();
+      expect(timer).toBeTruthy();
+    });
+  });
 });

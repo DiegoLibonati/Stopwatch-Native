@@ -31,12 +31,16 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-test("It must render the number and time lap.", () => {
-  const { props, gets } = renderComponent();
+describe("Lap.tsx", () => {
+  describe("General Tests.", () => {
+    test("It must render the number and time lap.", () => {
+      const { props, gets } = renderComponent();
 
-  const lapNumber = gets!.getByText!(String(props.lap.lapNumber));
-  const lapTime = gets!.getByText!(props.lap.time);
+      const lapNumber = gets!.getByText!(String(props.lap.lapNumber));
+      const lapTime = gets!.getByText!(props.lap.time);
 
-  expect(lapNumber).toBeTruthy();
-  expect(lapTime).toBeTruthy();
+      expect(lapNumber).toBeTruthy();
+      expect(lapTime).toBeTruthy();
+    });
+  });
 });

@@ -38,7 +38,7 @@ export const Modal = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   rootModalView: {
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: `rgba(${theme.colors.blackInt}, 0.5)`,
   },
   centeredView: {
     flex: 1,
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: "white",
+    backgroundColor: theme.colors.white,
     borderRadius: 20,
     padding: 35,
     alignItems: "center",

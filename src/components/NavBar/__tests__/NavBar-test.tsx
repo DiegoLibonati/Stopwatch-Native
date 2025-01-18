@@ -9,47 +9,11 @@ import { CronoProvider, useCronoContext } from "../../../contexts/CronoContext";
 
 import {
   getMockUiState,
-  MOCK_SKINS,
-  MOCK_UI_STATE,
-} from "../../../tests/jest.setup";
+  mockSkins,
+  mockUiState,
+} from "../../../tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
-
-const mockCloseNavBar = jest.fn();
-const mockOpenModal = jest.fn();
-const mockChangeSkin = jest.fn();
-
-jest.mock("expo-font");
-
-jest.mock("../../../constants/data.ts", () => ({
-  get skins() {
-    return MOCK_SKINS;
-  },
-}));
-
-jest.mock("../../../contexts/UiContext", () => ({
-  ...jest.requireActual("../../../contexts/UiContext"),
-  useUiContext: jest.fn(),
-}));
-
-jest.mock("../../../contexts/CronoContext", () => ({
-  ...jest.requireActual("../../../contexts/CronoContext"),
-  useCronoContext: jest.fn(),
-}));
-
-beforeEach(() => {
-  jest.clearAllMocks();
-
-  (useUiContext as jest.Mock).mockReturnValue({
-    uiState: getMockUiState(MOCK_UI_STATE),
-    closeNavBar: mockCloseNavBar,
-    openModal: mockOpenModal,
-  });
-
-  (useCronoContext as jest.Mock).mockReturnValue({
-    changeSkin: mockChangeSkin,
-  });
-});
 
 const renderComponent = (): RenderComponent => {
   const {
@@ -81,51 +45,88 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-test("It should render the close button and execute the relevant functions when it is pressed.", () => {
-  const { gets } = renderComponent();
+jest.mock("expo-font");
+jest.mock("../../../constants/data.ts", () => ({
+  get skins() {
+    return mockSkins;
+  },
+}));
+jest.mock("../../../contexts/UiContext", () => ({
+  ...jest.requireActual("../../../contexts/UiContext"),
+  useUiContext: jest.fn(),
+}));
+jest.mock("../../../contexts/CronoContext", () => ({
+  ...jest.requireActual("../../../contexts/CronoContext"),
+  useCronoContext: jest.fn(),
+}));
 
-  const closeTouchable = gets!.getByTestId!("close-navbar");
+describe("NavBar.tsx", () => {
+  describe("General Tests.", () => {
+    const mockCloseNavBar = jest.fn();
+    const mockOpenModal = jest.fn();
+    const mockChangeSkin = jest.fn();
 
-  expect(closeTouchable).toBeTruthy();
+    beforeEach(() => {
+      jest.clearAllMocks();
 
-  fireEvent.press(closeTouchable);
+      (useUiContext as jest.Mock).mockReturnValue({
+        uiState: getMockUiState(mockUiState),
+        closeNavBar: mockCloseNavBar,
+        openModal: mockOpenModal,
+      });
 
-  expect(mockCloseNavBar).toHaveBeenCalledTimes(1);
-});
+      (useCronoContext as jest.Mock).mockReturnValue({
+        changeSkin: mockChangeSkin,
+      });
+    });
 
-test("It should render the navigation bar title.", () => {
-  const { gets } = renderComponent();
+    test("It should render the close button and execute the relevant functions when it is pressed.", () => {
+      const { gets } = renderComponent();
 
-  const title = gets!.getByText!("SKINS");
+      const closeTouchable = gets!.getByTestId!("close-navbar");
 
-  expect(title).toBeTruthy();
-});
+      expect(closeTouchable).toBeTruthy();
 
-test("It must render all skins.", () => {
-  const { gets } = renderComponent();
+      fireEvent.press(closeTouchable);
 
-  const skins = gets!.getAllByTestId!("skin");
+      expect(mockCloseNavBar).toHaveBeenCalledTimes(1);
+    });
 
-  expect(skins).toHaveLength(MOCK_SKINS.length);
-});
+    test("It should render the navigation bar title.", () => {
+      const { gets } = renderComponent();
 
-test("It should render the modal when you click on a skin.", () => {
-  const { gets, querys } = renderComponent();
+      const title = gets!.getByText!("SKINS");
 
-  const titleModal = querys!.queryByText!("Skin changed");
+      expect(title).toBeTruthy();
+    });
 
-  expect(titleModal).toBeFalsy();
+    test("It must render all skins.", () => {
+      const { gets } = renderComponent();
 
-  const skins = gets!.getAllByTestId!("skin");
+      const skins = gets!.getAllByTestId!("skin");
 
-  expect(skins).toHaveLength(MOCK_SKINS.length);
+      expect(skins).toHaveLength(mockSkins.length);
+    });
 
-  const skin = skins[0];
+    test("It should render the modal when you click on a skin.", () => {
+      const { gets, querys } = renderComponent();
 
-  fireEvent.press(skin);
+      const titleModal = querys!.queryByText!("Skin changed");
 
-  expect(mockChangeSkin).toHaveBeenCalledTimes(1);
-  expect(mockChangeSkin).toHaveBeenCalledWith(MOCK_SKINS[0]);
-  expect(mockOpenModal).toHaveBeenCalledTimes(1);
-  expect(mockOpenModal).toHaveBeenCalledWith("Skin changed");
+      expect(titleModal).toBeFalsy();
+
+      const skins = gets!.getAllByTestId!("skin");
+
+      expect(skins).toHaveLength(mockSkins.length);
+
+      const skin = skins[0];
+
+      fireEvent.press(skin);
+
+      expect(mockChangeSkin).toHaveBeenCalledTimes(1);
+      expect(mockChangeSkin).toHaveBeenCalledWith(mockSkins[0]);
+      expect(mockOpenModal).toHaveBeenCalledTimes(1);
+      expect(mockOpenModal).toHaveBeenCalledWith("Skin changed");
+    });
+  });
 });

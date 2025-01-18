@@ -8,27 +8,9 @@ import { CronoProvider } from "../../../contexts/CronoContext";
 import { UiProvider, useUiContext } from "../../../contexts/UiContext";
 import { LapsProvider } from "../../../contexts/LapsContext";
 
-import { getMockUiState, MOCK_UI_STATE } from "../../../tests/jest.setup";
+import { getMockUiState, mockUiState } from "../../../tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
-
-const mockOpenNavBar = jest.fn();
-
-jest.mock("expo-font");
-
-jest.mock("../../../contexts/UiContext", () => ({
-  ...jest.requireActual("../../../contexts/UiContext"),
-  useUiContext: jest.fn(),
-}));
-
-beforeEach(() => {
-  jest.clearAllMocks();
-
-  (useUiContext as jest.Mock).mockReturnValue({
-    uiState: getMockUiState(MOCK_UI_STATE),
-    openNavBar: mockOpenNavBar,
-  });
-});
 
 const renderComponent = (): RenderComponent => {
   const {
@@ -62,14 +44,35 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-test("It must execute the function of opening the navbar when you click on the menu button.", () => {
-  const { gets } = renderComponent();
+jest.mock("expo-font");
+jest.mock("../../../contexts/UiContext", () => ({
+  ...jest.requireActual("../../../contexts/UiContext"),
+  useUiContext: jest.fn(),
+}));
 
-  const openNavBarTouchable = gets?.getByTestId!("open-nav");
+describe("MainPage.tsx", () => {
+  describe("General Tests.", () => {
+    const mockOpenNavBar = jest.fn();
 
-  expect(openNavBarTouchable).toBeTruthy();
+    beforeEach(() => {
+      jest.clearAllMocks();
 
-  fireEvent.press(openNavBarTouchable);
+      (useUiContext as jest.Mock).mockReturnValue({
+        uiState: getMockUiState(mockUiState),
+        openNavBar: mockOpenNavBar,
+      });
+    });
 
-  expect(mockOpenNavBar).toHaveBeenCalledTimes(1);
+    test("It must execute the function of opening the navbar when you click on the menu button.", () => {
+      const { gets } = renderComponent();
+
+      const openNavBarTouchable = gets?.getByTestId!("open-nav");
+
+      expect(openNavBarTouchable).toBeTruthy();
+
+      fireEvent.press(openNavBarTouchable);
+
+      expect(mockOpenNavBar).toHaveBeenCalledTimes(1);
+    });
+  });
 });
