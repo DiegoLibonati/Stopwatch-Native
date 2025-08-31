@@ -6,7 +6,7 @@ import { LapsView } from "../LapsView";
 
 import { LapsProvider, useLapsContext } from "../../../contexts/LapsContext";
 
-import { getMockLapsState, mockLapsState } from "../../../tests/jest.constants";
+import { getMockLapsState, mockLapsState } from "../../../../tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
 

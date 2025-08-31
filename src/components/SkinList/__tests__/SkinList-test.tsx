@@ -7,7 +7,7 @@ import { SkinList } from "../SkinList";
 import { UiProvider, useUiContext } from "../../../contexts/UiContext";
 import { CronoProvider, useCronoContext } from "../../../contexts/CronoContext";
 
-import { mockSkins } from "../../../tests/jest.constants";
+import { mockSkins } from "../../../../tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
 

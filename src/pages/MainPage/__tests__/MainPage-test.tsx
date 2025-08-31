@@ -8,7 +8,7 @@ import { CronoProvider } from "../../../contexts/CronoContext";
 import { UiProvider, useUiContext } from "../../../contexts/UiContext";
 import { LapsProvider } from "../../../contexts/LapsContext";
 
-import { getMockUiState, mockUiState } from "../../../tests/jest.constants";
+import { getMockUiState, mockUiState } from "../../../../tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
 

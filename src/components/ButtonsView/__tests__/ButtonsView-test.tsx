@@ -10,7 +10,7 @@ import { LapsProvider, useLapsContext } from "../../../contexts/LapsContext";
 import {
   getMockCronoState,
   mockCronoState,
-} from "../../../tests/jest.constants";
+} from "../../../../tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
 

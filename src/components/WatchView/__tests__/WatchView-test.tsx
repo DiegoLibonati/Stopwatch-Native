@@ -9,7 +9,7 @@ import { CronoProvider, useCronoContext } from "../../../contexts/CronoContext";
 import {
   getMockCronoState,
   mockCronoState,
-} from "../../../tests/jest.constants";
+} from "../../../../tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
 

@@ -11,7 +11,7 @@ import {
   getMockUiState,
   mockSkins,
   mockUiState,
-} from "../../../tests/jest.constants";
+} from "../../../../tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
 

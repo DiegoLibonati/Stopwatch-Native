@@ -6,7 +6,7 @@ import { Modal } from "../Modal";
 
 import { UiProvider, useUiContext } from "../../../contexts/UiContext";
 
-import { getMockUiState, mockUiState } from "../../../tests/jest.constants";
+import { getMockUiState, mockUiState } from "../../../../tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
 
