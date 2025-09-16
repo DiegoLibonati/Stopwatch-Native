@@ -5,9 +5,9 @@ import { MainPage } from "./src/pages/MainPage/MainPage";
 
 import { CronoProvider } from "./src/contexts/CronoContext";
 import { LapsProvider } from "./src/contexts/LapsContext";
-import { UiProvider } from "./src/contexts/UiContext";
+import { UiProvider } from "./src/contexts/UIContext";
 
-export default function App(): JSX.Element {
+export default function App() {
   return (
     <Fragment>
       <StatusBar style="dark" />

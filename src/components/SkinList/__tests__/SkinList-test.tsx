@@ -1,13 +1,13 @@
 import { fireEvent, render } from "@testing-library/react-native";
 
-import { GlobalTest } from "../../../entities/entities";
+import { GlobalTest } from "@src/entities/entities";
 
-import { SkinList } from "../SkinList";
+import { SkinList } from "@src/components/SkinList/SkinList";
 
-import { UiProvider, useUiContext } from "../../../contexts/UiContext";
-import { CronoProvider, useCronoContext } from "../../../contexts/CronoContext";
+import { UiProvider, useUiContext } from "@src/contexts/UIContext";
+import { CronoProvider, useCronoContext } from "@src/contexts/CronoContext";
 
-import { mockSkins } from "../../../../tests/jest.constants";
+import { mockSkins } from "@tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
 
@@ -41,17 +41,17 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-jest.mock("../../../constants/data.ts", () => ({
+jest.mock("@src/constants/data.ts", () => ({
   get skins() {
     return mockSkins;
   },
 }));
-jest.mock("../../../contexts/UiContext", () => ({
-  ...jest.requireActual("../../../contexts/UiContext"),
+jest.mock("@src/contexts/UiContext", () => ({
+  ...jest.requireActual("@src/contexts/UiContext"),
   useUiContext: jest.fn(),
 }));
-jest.mock("../../../contexts/CronoContext", () => ({
-  ...jest.requireActual("../../../contexts/CronoContext"),
+jest.mock("@src/contexts/CronoContext", () => ({
+  ...jest.requireActual("@src/contexts/CronoContext"),
   useCronoContext: jest.fn(),
 }));
 

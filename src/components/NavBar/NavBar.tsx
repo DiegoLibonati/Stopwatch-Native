@@ -1,19 +1,19 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import Constants from "expo-constants";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { Ionicons } from "@expo/vector-icons";
 import Animated, {
   useAnimatedStyle,
   withTiming,
 } from "react-native-reanimated";
 
-import { SkinList } from "../SkinList/SkinList";
-import { Modal } from "../Modal/Modal";
+import { SkinList } from "@src/components/SkinList/SkinList";
+import { Modal } from "@src/components/Modal/Modal";
 
-import { useUiContext } from "../../contexts/UiContext";
-import { BEZIER_250 } from "../../constants/style";
-import { theme } from "../../theme/theme";
+import { useUiContext } from "@src/contexts/UIContext";
+import { BEZIER_250 } from "@src/constants/style";
+import { theme } from "@src/theme/theme";
 
-export const NavBar = (): JSX.Element => {
+export const NavBar = () => {
   const { uiState, closeNavBar } = useUiContext();
 
   const animatedStyle = useAnimatedStyle(() => {

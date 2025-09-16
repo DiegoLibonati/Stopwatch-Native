@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 
-import { Lap as LapT } from "../../../entities/entities";
+import { Lap as LapT } from "@src/entities/entities";
 
-import { theme } from "../../../theme/theme";
+import { theme } from "@src/theme/theme";
 
 interface LapProps {
   lap: LapT;
 }
 
-export const Lap = ({ lap }: LapProps): JSX.Element => {
+export const Lap = ({ lap }: LapProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.lapNumber}>{lap.lapNumber}</Text>

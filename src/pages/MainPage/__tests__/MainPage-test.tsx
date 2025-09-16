@@ -1,14 +1,14 @@
 import { fireEvent, render } from "@testing-library/react-native";
 
-import { GlobalTest } from "../../../entities/entities";
+import { GlobalTest } from "@src/entities/entities";
 
-import { MainPage } from "../MainPage";
+import { MainPage } from "@src/pages/MainPage/MainPage";
 
-import { CronoProvider } from "../../../contexts/CronoContext";
-import { UiProvider, useUiContext } from "../../../contexts/UiContext";
-import { LapsProvider } from "../../../contexts/LapsContext";
+import { CronoProvider } from "@src/contexts/CronoContext";
+import { UiProvider, useUiContext } from "@src/contexts/UIContext";
+import { LapsProvider } from "@src/contexts/LapsContext";
 
-import { getMockUiState, mockUiState } from "../../../../tests/jest.constants";
+import { getMockUiState, mockUiState } from "@tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
 
@@ -44,9 +44,8 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-jest.mock("expo-font");
-jest.mock("../../../contexts/UiContext", () => ({
-  ...jest.requireActual("../../../contexts/UiContext"),
+jest.mock("@src/contexts/UiContext", () => ({
+  ...jest.requireActual("@src/contexts/UiContext"),
   useUiContext: jest.fn(),
 }));
 

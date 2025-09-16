@@ -4,9 +4,9 @@ import {
   CronoState,
   Skin,
   CronoContext as CronoContextT,
-} from "../entities/entities";
+} from "@src/entities/entities";
 
-import { skins } from "../constants/data";
+import { skins } from "@src/constants/data";
 
 interface CronoContextProps {
   children: React.ReactNode;

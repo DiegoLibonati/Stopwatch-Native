@@ -1,14 +1,14 @@
 import { FlatList, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 
-import { Skin } from "../../entities/entities";
+import { Skin } from "@src/entities/entities";
 
-import { useCronoContext } from "../../contexts/CronoContext";
-import { useUiContext } from "../../contexts/UiContext";
-import { skins } from "../../constants/data";
-import { theme } from "../../theme/theme";
+import { useCronoContext } from "@src/contexts/CronoContext";
+import { useUiContext } from "@src/contexts/UIContext";
+import { skins } from "@src/constants/data";
+import { theme } from "@src/theme/theme";
 
-export const SkinList = (): JSX.Element => {
+export const SkinList = () => {
   const { changeSkin } = useCronoContext();
   const { openModal } = useUiContext();
 

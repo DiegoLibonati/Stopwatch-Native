@@ -1,17 +1,17 @@
 import { Fragment } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Constants from "expo-constants";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { Ionicons } from "@expo/vector-icons";
 
-import { WatchView } from "../../components/WatchView/WatchView";
-import { LapsView } from "../../components/LapsView/LapsView";
-import { ButtonsView } from "../../components/ButtonsView/ButtonsView";
-import { NavBar } from "../../components/NavBar/NavBar";
+import { WatchView } from "@src/components/WatchView/WatchView";
+import { LapsView } from "@src/components/LapsView/LapsView";
+import { ButtonsView } from "@src/components/ButtonsView/ButtonsView";
+import { NavBar } from "@src/components/NavBar/NavBar";
 
-import { useUiContext } from "../../contexts/UiContext";
-import { theme } from "../../theme/theme";
+import { useUiContext } from "@src/contexts/UIContext";
+import { theme } from "@src/theme/theme";
 
-export const MainPage = (): JSX.Element => {
+export const MainPage = () => {
   const { openNavBar } = useUiContext();
 
   const handlePressMenu = (): void => {

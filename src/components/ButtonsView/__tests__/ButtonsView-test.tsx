@@ -1,16 +1,16 @@
 import { render, fireEvent } from "@testing-library/react-native";
 
-import { GlobalTest } from "../../../entities/entities";
+import { GlobalTest } from "@src/entities/entities";
 
-import { ButtonsView } from "../ButtonsView";
+import { ButtonsView } from "@src/components/ButtonsView/ButtonsView";
 
-import { CronoProvider, useCronoContext } from "../../../contexts/CronoContext";
-import { LapsProvider, useLapsContext } from "../../../contexts/LapsContext";
+import { CronoProvider, useCronoContext } from "@src/contexts/CronoContext";
+import { LapsProvider, useLapsContext } from "@src/contexts/LapsContext";
 
 import {
   getMockCronoState,
   mockCronoState,
-} from "../../../../tests/jest.constants";
+} from "@tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
 
@@ -33,13 +33,13 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-jest.mock("../../../contexts/CronoContext", () => ({
-  ...jest.requireActual("../../../contexts/CronoContext"),
+jest.mock("@src/contexts/CronoContext", () => ({
+  ...jest.requireActual("@src/contexts/CronoContext"),
   useCronoContext: jest.fn(),
 }));
 
-jest.mock("../../../contexts/LapsContext", () => ({
-  ...jest.requireActual("../../../contexts/LapsContext"),
+jest.mock("@src/contexts/LapsContext", () => ({
+  ...jest.requireActual("@src/contexts/LapsContext"),
   useLapsContext: jest.fn(),
 }));
 

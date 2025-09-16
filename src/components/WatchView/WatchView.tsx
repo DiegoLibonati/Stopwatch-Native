@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import { Image } from "expo-image";
 
-import { useCronoContext } from "../../contexts/CronoContext";
-import { theme } from "../../theme/theme";
+import { useCronoContext } from "@src/contexts/CronoContext";
+import { theme } from "@src/theme/theme";
 
-export const WatchView = (): JSX.Element => {
+export const WatchView = () => {
   const { cronoState } = useCronoContext();
 
   return (

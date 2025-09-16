@@ -1,12 +1,12 @@
 import { render } from "@testing-library/react-native";
 
-import { GlobalTest } from "../../../entities/entities";
+import { GlobalTest } from "@src/entities/entities";
 
-import { LapsView } from "../LapsView";
+import { LapsView } from "@src/components/LapsView/LapsView";
 
-import { LapsProvider, useLapsContext } from "../../../contexts/LapsContext";
+import { LapsProvider, useLapsContext } from "@src/contexts/LapsContext";
 
-import { getMockLapsState, mockLapsState } from "../../../../tests/jest.constants";
+import { getMockLapsState, mockLapsState } from "@tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
 
@@ -27,8 +27,8 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-jest.mock("../../../contexts/LapsContext", () => ({
-  ...jest.requireActual("../../../contexts/LapsContext"),
+jest.mock("@src/contexts/LapsContext", () => ({
+  ...jest.requireActual("@src/contexts/LapsContext"),
   useLapsContext: jest.fn(),
 }));
 

@@ -1,12 +1,12 @@
 import { fireEvent, render } from "@testing-library/react-native";
 
-import { GlobalTest } from "../../../entities/entities";
+import { GlobalTest } from "@src/entities/entities";
 
-import { Modal } from "../Modal";
+import { Modal } from "@src/components/Modal/Modal";
 
-import { UiProvider, useUiContext } from "../../../contexts/UiContext";
+import { UiProvider, useUiContext } from "@src/contexts/UIContext";
 
-import { getMockUiState, mockUiState } from "../../../../tests/jest.constants";
+import { getMockUiState, mockUiState } from "@tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
 
@@ -30,8 +30,8 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-jest.mock("../../../contexts/UiContext", () => ({
-  ...jest.requireActual("../../../contexts/UiContext"),
+jest.mock("@src/contexts/UiContext", () => ({
+  ...jest.requireActual("@src/contexts/UiContext"),
   useUiContext: jest.fn(),
 }));
 

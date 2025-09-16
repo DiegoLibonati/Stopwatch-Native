@@ -1,17 +1,17 @@
 import { fireEvent, render } from "@testing-library/react-native";
 
-import { GlobalTest } from "../../../entities/entities";
+import { GlobalTest } from "@src/entities/entities";
 
-import { NavBar } from "../NavBar";
+import { NavBar } from "@src/components/NavBar/NavBar";
 
-import { UiProvider, useUiContext } from "../../../contexts/UiContext";
-import { CronoProvider, useCronoContext } from "../../../contexts/CronoContext";
+import { UiProvider, useUiContext } from "@src/contexts/UIContext";
+import { CronoProvider, useCronoContext } from "@src/contexts/CronoContext";
 
 import {
   getMockUiState,
   mockSkins,
   mockUiState,
-} from "../../../../tests/jest.constants";
+} from "@tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
 
@@ -45,18 +45,17 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-jest.mock("expo-font");
-jest.mock("../../../constants/data.ts", () => ({
+jest.mock("@src/constants/data.ts", () => ({
   get skins() {
     return mockSkins;
   },
 }));
-jest.mock("../../../contexts/UiContext", () => ({
-  ...jest.requireActual("../../../contexts/UiContext"),
+jest.mock("@src/contexts/UIContext", () => ({
+  ...jest.requireActual("@src/contexts/UiContext"),
   useUiContext: jest.fn(),
 }));
-jest.mock("../../../contexts/CronoContext", () => ({
-  ...jest.requireActual("../../../contexts/CronoContext"),
+jest.mock("@src/contexts/CronoContext", () => ({
+  ...jest.requireActual("@src/contexts/CronoContext"),
   useCronoContext: jest.fn(),
 }));
 

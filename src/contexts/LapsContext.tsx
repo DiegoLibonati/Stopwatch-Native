@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 
-import { LapsContext as LapsContextT, LapsState } from "../entities/entities";
+import { LapsContext as LapsContextT, LapsState } from "@src/entities/entities";
 
 interface LapsContextProps {
   children: React.ReactNode;

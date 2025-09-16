@@ -1,15 +1,15 @@
 import { render } from "@testing-library/react-native";
 
-import { GlobalTest } from "../../../entities/entities";
+import { GlobalTest } from "@src/entities/entities";
 
-import { WatchView } from "../WatchView";
+import { WatchView } from "@src/components/WatchView/WatchView";
 
-import { CronoProvider, useCronoContext } from "../../../contexts/CronoContext";
+import { CronoProvider, useCronoContext } from "@src/contexts/CronoContext";
 
 import {
   getMockCronoState,
   mockCronoState,
-} from "../../../../tests/jest.constants";
+} from "@tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
 
@@ -41,8 +41,8 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-jest.mock("../../../contexts/CronoContext", () => ({
-  ...jest.requireActual("../../../contexts/CronoContext"),
+jest.mock("@src/contexts/CronoContext", () => ({
+  ...jest.requireActual("@src/contexts/CronoContext"),
   useCronoContext: jest.fn(),
 }));
 

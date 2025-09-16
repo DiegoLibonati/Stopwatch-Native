@@ -1,10 +1,10 @@
 import { FlatList, StyleSheet } from "react-native";
 
-import { Lap } from "./Lap/Lap";
+import { Lap } from "@src/components/LapsView/Lap/Lap";
 
-import { useLapsContext } from "../../contexts/LapsContext";
+import { useLapsContext } from "@src/contexts/LapsContext";
 
-export const LapsView = (): JSX.Element => {
+export const LapsView = () => {
   const { lapsState } = useLapsContext();
 
   return (

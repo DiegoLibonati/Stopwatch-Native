@@ -6,11 +6,11 @@ import {
   View,
 } from "react-native";
 
-import { useCronoContext } from "../../contexts/CronoContext";
-import { useLapsContext } from "../../contexts/LapsContext";
-import { theme } from "../../theme/theme";
+import { useCronoContext } from "@src/contexts/CronoContext";
+import { useLapsContext } from "@src/contexts/LapsContext";
+import { theme } from "@src/theme/theme";
 
-export const ButtonsView = (): JSX.Element => {
+export const ButtonsView = () => {
   const { cronoState, startCrono, clearCrono, stopCrono } = useCronoContext();
   const { addNewLap, clearLaps } = useLapsContext();
 

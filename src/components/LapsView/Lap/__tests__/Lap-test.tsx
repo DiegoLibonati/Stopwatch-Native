@@ -1,8 +1,8 @@
 import { render } from "@testing-library/react-native";
 
-import { GlobalTest, Lap as LapT } from "../../../../entities/entities";
+import { GlobalTest, Lap as LapT } from "@src/entities/entities";
 
-import { Lap } from "../Lap";
+import { Lap } from "@src/components/LapsView/Lap/Lap";
 
 type RenderComponent = {
   props: {
