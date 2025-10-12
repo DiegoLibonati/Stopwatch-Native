@@ -4,7 +4,7 @@ interface DefaultProps {
   children?: React.ReactNode;
 }
 
-export interface LapViewProps {
+export interface LapProps {
   lap: Lap;
 }
 

@@ -10,7 +10,7 @@ import { useCronoContext } from "@src/contexts/CronoContext";
 import { useLapsContext } from "@src/contexts/LapsContext";
 import { theme } from "@src/styles/theme";
 
-export const ButtonsView = () => {
+export const ActionButtons = () => {
   const { cronoState, startCrono, clearCrono, stopCrono } = useCronoContext();
   const { addNewLap, clearLaps } = useLapsContext();
 

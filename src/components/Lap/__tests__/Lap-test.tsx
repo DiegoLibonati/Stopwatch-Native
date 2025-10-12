@@ -1,12 +1,12 @@
 import { render } from "@testing-library/react-native";
 
-import { LapViewProps } from "@src/entities/props";
+import { LapProps } from "@src/entities/props";
 import { GlobalTest } from "@src/entities/tests";
 
-import { LapView } from "@src/components/LapView/LapView";
+import { Lap } from "@src/components/Lap/Lap";
 
 type RenderComponent = {
-  props: LapViewProps;
+  props: LapProps;
 } & GlobalTest;
 
 const renderComponent = (): RenderComponent => {
@@ -18,9 +18,7 @@ const renderComponent = (): RenderComponent => {
   };
 
   const { debug, getByText } = render(
-    <LapView
-      lap={{ lapNumber: props.lap.lapNumber, time: props.lap.time }}
-    ></LapView>
+    <Lap lap={{ lapNumber: props.lap.lapNumber, time: props.lap.time }}></Lap>
   );
 
   return {

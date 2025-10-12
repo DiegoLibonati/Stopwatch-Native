@@ -9,7 +9,7 @@ import {
 import { useUiContext } from "@src/contexts/UiContext";
 import { theme } from "@src/styles/theme";
 
-export const ModalView = () => {
+export const Modal = () => {
   const { uiState, closeModal } = useUiContext();
 
   const handlePressClose = (): void => {

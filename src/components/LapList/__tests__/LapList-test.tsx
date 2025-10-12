@@ -32,7 +32,7 @@ jest.mock("@src/contexts/LapsContext", () => ({
   useLapsContext: jest.fn(),
 }));
 
-describe("LapView.tsx", () => {
+describe("LapList.tsx", () => {
   describe("General Tests.", () => {
     const mockLaps = [{ lapNumber: 1, time: "11:11:11" }];
 

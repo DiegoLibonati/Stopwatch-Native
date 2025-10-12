@@ -2,14 +2,11 @@ import { render } from "@testing-library/react-native";
 
 import { GlobalTest } from "@src/entities/tests";
 
-import { WatchView } from "@src/components/WatchView/WatchView";
+import { Watch } from "@src/components/Watch/Watch";
 
 import { CronoProvider, useCronoContext } from "@src/contexts/CronoContext";
 
-import {
-  getMockCronoState,
-  mockCronoState,
-} from "@tests/jest.constants";
+import { getMockCronoState, mockCronoState } from "@tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
 
@@ -23,7 +20,7 @@ const renderComponent = (): RenderComponent => {
     queryByText,
   } = render(
     <CronoProvider>
-      <WatchView></WatchView>
+      <Watch></Watch>
     </CronoProvider>
   );
 
@@ -46,7 +43,7 @@ jest.mock("@src/contexts/CronoContext", () => ({
   useCronoContext: jest.fn(),
 }));
 
-describe("WatchView.tsx", () => {
+describe("Watch.tsx", () => {
   describe("General Tests.", () => {
     beforeEach(() => {
       jest.clearAllMocks();

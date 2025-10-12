@@ -2,15 +2,12 @@ import { render, fireEvent } from "@testing-library/react-native";
 
 import { GlobalTest } from "@src/entities/tests";
 
-import { ButtonsView } from "@src/components/ButtonsView/ButtonsView";
+import { ActionButtons } from "@src/components/ActionButtons/ActionButtons";
 
 import { CronoProvider, useCronoContext } from "@src/contexts/CronoContext";
 import { LapsProvider, useLapsContext } from "@src/contexts/LapsContext";
 
-import {
-  getMockCronoState,
-  mockCronoState,
-} from "@tests/jest.constants";
+import { getMockCronoState, mockCronoState } from "@tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
 
@@ -18,7 +15,7 @@ const renderComponent = (): RenderComponent => {
   const { debug, getByText, getByRole, getByTestId } = render(
     <CronoProvider>
       <LapsProvider>
-        <ButtonsView></ButtonsView>
+        <ActionButtons></ActionButtons>
       </LapsProvider>
     </CronoProvider>
   );
@@ -43,7 +40,7 @@ jest.mock("@src/contexts/LapsContext", () => ({
   useLapsContext: jest.fn(),
 }));
 
-describe("ButtonsView.tsx", () => {
+describe("ActionButtons.tsx", () => {
   describe("If key 'isTimerOn' is true.", () => {
     const isTimerOn = true;
 

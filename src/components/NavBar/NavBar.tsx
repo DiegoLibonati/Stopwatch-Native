@@ -7,13 +7,13 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { SkinList } from "@src/components/SkinList/SkinList";
-import { ModalView } from "@src/components/ModalView/ModalView";
+import { Modal } from "@src/components/Modal/Modal";
 
 import { useUiContext } from "@src/contexts/UiContext";
 import { BEZIER_250 } from "@src/styles/composed";
 import { theme } from "@src/styles/theme";
 
-export const NavBarView = () => {
+export const NavBar = () => {
   const { uiState, closeNavBar } = useUiContext();
 
   const animatedStyle = useAnimatedStyle(() => {
@@ -45,7 +45,7 @@ export const NavBarView = () => {
       </TouchableOpacity>
       <Text style={styles.title}>SKINS</Text>
       <SkinList></SkinList>
-      <ModalView></ModalView>
+      <Modal></Modal>
     </Animated.View>
   );
 };

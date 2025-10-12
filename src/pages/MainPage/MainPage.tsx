@@ -3,10 +3,10 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Constants from "expo-constants";
 import { Ionicons } from "@expo/vector-icons";
 
-import { WatchView } from "@src/components/WatchView/WatchView";
+import { Watch } from "@src/components/Watch/Watch";
 import { LapList } from "@src/components/LapList/LapList";
-import { ButtonsView } from "@src/components/ButtonsView/ButtonsView";
-import { NavBarView } from "@src/components/NavBarView/NavBarView";
+import { ActionButtons } from "@src/components/ActionButtons/ActionButtons";
+import { NavBar } from "@src/components/NavBar/NavBar";
 
 import { useUiContext } from "@src/contexts/UiContext";
 import { theme } from "@src/styles/theme";
@@ -21,9 +21,9 @@ export const MainPage = () => {
   return (
     <Fragment>
       <View style={styles.container}>
-        <WatchView></WatchView>
+        <Watch></Watch>
         <LapList></LapList>
-        <ButtonsView></ButtonsView>
+        <ActionButtons></ActionButtons>
 
         <TouchableOpacity
           onPress={handlePressMenu}
@@ -33,7 +33,7 @@ export const MainPage = () => {
           <Ionicons name="menu" size={30} color={theme.colors.primaryColor} />
         </TouchableOpacity>
       </View>
-      <NavBarView></NavBarView>
+      <NavBar></NavBar>
     </Fragment>
   );
 };

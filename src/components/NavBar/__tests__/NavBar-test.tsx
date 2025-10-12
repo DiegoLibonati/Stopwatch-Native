@@ -2,7 +2,7 @@ import { fireEvent, render } from "@testing-library/react-native";
 
 import { GlobalTest } from "@src/entities/tests";
 
-import { NavBarView } from "@src/components/NavBarView/NavBarView";
+import { NavBar } from "@src/components/NavBar/NavBar";
 
 import { UiProvider, useUiContext } from "@src/contexts/UiContext";
 import { CronoProvider, useCronoContext } from "@src/contexts/CronoContext";
@@ -22,7 +22,7 @@ const renderComponent = (): RenderComponent => {
   } = render(
     <CronoProvider>
       <UiProvider>
-        <NavBarView></NavBarView>
+        <NavBar></NavBar>
       </UiProvider>
     </CronoProvider>
   );

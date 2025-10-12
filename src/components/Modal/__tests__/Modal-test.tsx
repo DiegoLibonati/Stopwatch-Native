@@ -2,7 +2,7 @@ import { fireEvent, render } from "@testing-library/react-native";
 
 import { GlobalTest } from "@src/entities/tests";
 
-import { ModalView } from "@src/components/ModalView/ModalView";
+import { Modal } from "@src/components/Modal/Modal";
 
 import { UiProvider, useUiContext } from "@src/contexts/UiContext";
 
@@ -13,7 +13,7 @@ type RenderComponent = {} & GlobalTest;
 const renderComponent = (): RenderComponent => {
   const { debug, getByText, getByRole, getByTestId, queryByText } = render(
     <UiProvider>
-      <ModalView></ModalView>
+      <Modal></Modal>
     </UiProvider>
   );
 

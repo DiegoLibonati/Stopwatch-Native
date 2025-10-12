@@ -4,7 +4,7 @@ import { Image } from "expo-image";
 import { useCronoContext } from "@src/contexts/CronoContext";
 import { theme } from "@src/styles/theme";
 
-export const WatchView = () => {
+export const Watch = () => {
   const { cronoState } = useCronoContext();
 
   return (

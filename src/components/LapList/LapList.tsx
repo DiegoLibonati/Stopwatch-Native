@@ -1,6 +1,6 @@
 import { FlatList, StyleSheet } from "react-native";
 
-import { LapView } from "@src/components/LapView/LapView";
+import { Lap } from "@src/components/Lap/Lap";
 
 import { useLapsContext } from "@src/contexts/LapsContext";
 
@@ -11,9 +11,7 @@ export const LapList = () => {
     <FlatList
       style={styles.container}
       data={lapsState.laps}
-      renderItem={({ item }) => (
-        <LapView key={item.lapNumber} lap={item}></LapView>
-      )}
+      renderItem={({ item }) => <Lap key={item.lapNumber} lap={item}></Lap>}
       testID="list-laps"
     ></FlatList>
   );
