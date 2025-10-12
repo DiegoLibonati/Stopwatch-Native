@@ -1,17 +1,13 @@
 import { fireEvent, render } from "@testing-library/react-native";
 
-import { GlobalTest } from "@src/entities/entities";
+import { GlobalTest } from "@src/entities/tests";
 
 import { NavBar } from "@src/components/NavBar/NavBar";
 
 import { UiProvider, useUiContext } from "@src/contexts/UIContext";
 import { CronoProvider, useCronoContext } from "@src/contexts/CronoContext";
 
-import {
-  getMockUiState,
-  mockSkins,
-  mockUiState,
-} from "@tests/jest.constants";
+import { getMockUiState, mockSkins, mockUiState } from "@tests/jest.constants";
 
 type RenderComponent = {} & GlobalTest;
 
@@ -45,11 +41,10 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-jest.mock("@src/constants/data.ts", () => ({
-  get skins() {
-    return mockSkins;
-  },
-}));
+jest.mock("@src/constants/skins", () => {
+  const { mockSkins } = jest.requireActual("@tests/jest.constants");
+  return { __esModule: true, default: mockSkins };
+});
 jest.mock("@src/contexts/UIContext", () => ({
   ...jest.requireActual("@src/contexts/UiContext"),
   useUiContext: jest.fn(),

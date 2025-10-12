@@ -8,7 +8,7 @@ import {
 
 import { useCronoContext } from "@src/contexts/CronoContext";
 import { useLapsContext } from "@src/contexts/LapsContext";
-import { theme } from "@src/theme/theme";
+import { theme } from "@src/styles/theme";
 
 export const ButtonsView = () => {
   const { cronoState, startCrono, clearCrono, stopCrono } = useCronoContext();

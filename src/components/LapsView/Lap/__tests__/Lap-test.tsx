@@ -1,13 +1,12 @@
 import { render } from "@testing-library/react-native";
 
-import { GlobalTest, Lap as LapT } from "@src/entities/entities";
+import { LapProps } from "@src/entities/props";
+import { GlobalTest } from "@src/entities/tests";
 
 import { Lap } from "@src/components/LapsView/Lap/Lap";
 
 type RenderComponent = {
-  props: {
-    lap: LapT;
-  };
+  props: LapProps;
 } & GlobalTest;
 
 const renderComponent = (): RenderComponent => {

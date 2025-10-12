@@ -6,6 +6,7 @@ const config: Config = {
   moduleNameMapper: {
     "^@src/(.*)$": "<rootDir>/src/$1",
     "^@tests/(.*)$": "<rootDir>/tests/$1",
+    "\\.(png|jpg|jpeg|gif)$": "<rootDir>/tests_mocks/fileMock.ts",
   },
   transformIgnorePatterns: [
     "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|expo-status-bar|@sentry/react-native|native-base|react-native-svg)",

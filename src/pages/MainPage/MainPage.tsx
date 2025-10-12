@@ -9,7 +9,7 @@ import { ButtonsView } from "@src/components/ButtonsView/ButtonsView";
 import { NavBar } from "@src/components/NavBar/NavBar";
 
 import { useUiContext } from "@src/contexts/UIContext";
-import { theme } from "@src/theme/theme";
+import { theme } from "@src/styles/theme";
 
 export const MainPage = () => {
   const { openNavBar } = useUiContext();

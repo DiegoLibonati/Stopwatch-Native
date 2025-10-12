@@ -1,16 +1,11 @@
 import { createContext, useContext, useState } from "react";
 
-import {
-  CronoState,
-  Skin,
-  CronoContext as CronoContextT,
-} from "@src/entities/entities";
+import { CronoContext as CronoContextT } from "@src/entities/contexts";
+import { CronoState } from "@src/entities/states";
+import { Skin } from "@src/entities/app";
+import { CronoContextProps } from "@src/entities/props";
 
-import { skins } from "@src/constants/data";
-
-interface CronoContextProps {
-  children: React.ReactNode;
-}
+import skins from "@src/constants/skins";
 
 export const CronoContext = createContext<CronoContextT | null>(null);
 

@@ -10,8 +10,8 @@ import { SkinList } from "@src/components/SkinList/SkinList";
 import { Modal } from "@src/components/Modal/Modal";
 
 import { useUiContext } from "@src/contexts/UIContext";
-import { BEZIER_250 } from "@src/constants/style";
-import { theme } from "@src/theme/theme";
+import { BEZIER_250 } from "@src/styles/composed";
+import { theme } from "@src/styles/theme";
 
 export const NavBar = () => {
   const { uiState, closeNavBar } = useUiContext();

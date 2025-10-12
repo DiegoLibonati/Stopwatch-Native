@@ -7,7 +7,7 @@ import {
 } from "react-native";
 
 import { useUiContext } from "@src/contexts/UIContext";
-import { theme } from "@src/theme/theme";
+import { theme } from "@src/styles/theme";
 
 export const Modal = () => {
   const { uiState, closeModal } = useUiContext();

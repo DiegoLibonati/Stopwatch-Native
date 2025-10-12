@@ -1,12 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 
-import { Lap as LapT } from "@src/entities/entities";
+import { LapProps } from "@src/entities/props";
 
-import { theme } from "@src/theme/theme";
-
-interface LapProps {
-  lap: LapT;
-}
+import { theme } from "@src/styles/theme";
 
 export const Lap = ({ lap }: LapProps) => {
   return (

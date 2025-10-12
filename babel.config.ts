@@ -2,6 +2,7 @@ import type { ConfigAPI } from "@babel/core";
 
 export default function (api: ConfigAPI) {
   api.cache.forever();
+
   return {
     presets: ["babel-preset-expo"],
     plugins: [
@@ -15,6 +16,7 @@ export default function (api: ConfigAPI) {
           },
         },
       ],
+      "react-native-reanimated/plugin",
     ],
   };
 }

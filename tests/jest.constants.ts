@@ -1,17 +1,19 @@
-import { CronoState, LapsState, UiState } from "@src/entities/entities";
+import { CronoState, LapsState, UiState } from "@src/entities/states";
+
+import assets from "@src/assets/export";
 
 export const mockSkins = [
   {
     id: "clock1",
     name: "Normal",
-    static: require("@src/assets/clock-static.png"),
-    dinamic: require("@src/assets/clock.gif"),
+    static: assets.pngs.clock,
+    dinamic: assets.gifs.clock,
   },
   {
     id: "clock2",
     name: "Classic",
-    static: require("@src/assets/classic_static.png"),
-    dinamic: require("@src/assets/classic_gif.gif"),
+    static: assets.pngs.classic,
+    dinamic: assets.gifs.classic,
   },
 ];
 

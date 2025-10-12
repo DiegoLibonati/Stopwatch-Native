@@ -1,10 +1,8 @@
 import { createContext, useContext, useState } from "react";
 
-import { UiContext as UiContextT, UiState } from "@src/entities/entities";
-
-interface UiContextProps {
-  children: React.ReactNode;
-}
+import { UiContext as UiContextT } from "@src/entities/contexts";
+import { UiState } from "@src/entities/states";
+import { UiContextProps } from "@src/entities/props";
 
 export const UiContext = createContext<UiContextT | null>(null);
 

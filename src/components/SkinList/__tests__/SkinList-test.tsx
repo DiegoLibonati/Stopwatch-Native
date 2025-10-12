@@ -1,6 +1,6 @@
 import { fireEvent, render } from "@testing-library/react-native";
 
-import { GlobalTest } from "@src/entities/entities";
+import { GlobalTest } from "@src/entities/tests";
 
 import { SkinList } from "@src/components/SkinList/SkinList";
 
@@ -41,11 +41,10 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-jest.mock("@src/constants/data.ts", () => ({
-  get skins() {
-    return mockSkins;
-  },
-}));
+jest.mock("@src/constants/skins", () => {
+  const { mockSkins } = jest.requireActual("@tests/jest.constants");
+  return { __esModule: true, default: mockSkins };
+});
 jest.mock("@src/contexts/UiContext", () => ({
   ...jest.requireActual("@src/contexts/UiContext"),
   useUiContext: jest.fn(),

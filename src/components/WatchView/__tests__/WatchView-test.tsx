@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react-native";
 
-import { GlobalTest } from "@src/entities/entities";
+import { GlobalTest } from "@src/entities/tests";
 
 import { WatchView } from "@src/components/WatchView/WatchView";
 

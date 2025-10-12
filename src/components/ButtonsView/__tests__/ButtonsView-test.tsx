@@ -1,6 +1,6 @@
 import { render, fireEvent } from "@testing-library/react-native";
 
-import { GlobalTest } from "@src/entities/entities";
+import { GlobalTest } from "@src/entities/tests";
 
 import { ButtonsView } from "@src/components/ButtonsView/ButtonsView";
 

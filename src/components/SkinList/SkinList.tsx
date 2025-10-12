@@ -1,12 +1,12 @@
 import { FlatList, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 
-import { Skin } from "@src/entities/entities";
+import { Skin } from "@src/entities/app";
 
 import { useCronoContext } from "@src/contexts/CronoContext";
 import { useUiContext } from "@src/contexts/UIContext";
-import { skins } from "@src/constants/data";
-import { theme } from "@src/theme/theme";
+import skins from "@src/constants/skins";
+import { theme } from "@src/styles/theme";
 
 export const SkinList = () => {
   const { changeSkin } = useCronoContext();
