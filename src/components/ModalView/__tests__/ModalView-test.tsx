@@ -4,7 +4,7 @@ import { GlobalTest } from "@src/entities/tests";
 
 import { ModalView } from "@src/components/ModalView/ModalView";
 
-import { UiProvider, useUiContext } from "@src/contexts/Namechange";
+import { UiProvider, useUiContext } from "@src/contexts/UiContext";
 
 import { getMockUiState, mockUiState } from "@tests/jest.constants";
 

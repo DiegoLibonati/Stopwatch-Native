@@ -5,7 +5,7 @@ import { MainPage } from "@src/pages/MainPage/MainPage";
 
 import { CronoProvider } from "@src/contexts/CronoContext";
 import { LapsProvider } from "@src/contexts/LapsContext";
-import { UiProvider } from "@src/contexts/Namechange";
+import { UiProvider } from "@src/contexts/UiContext";
 
 export default function App() {
   return (

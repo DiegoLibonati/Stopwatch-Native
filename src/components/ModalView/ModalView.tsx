@@ -6,7 +6,7 @@ import {
   Pressable,
 } from "react-native";
 
-import { useUiContext } from "@src/contexts/Namechange";
+import { useUiContext } from "@src/contexts/UiContext";
 import { theme } from "@src/styles/theme";
 
 export const ModalView = () => {

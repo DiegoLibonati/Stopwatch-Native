@@ -9,7 +9,7 @@ import Animated, {
 import { SkinList } from "@src/components/SkinList/SkinList";
 import { ModalView } from "@src/components/ModalView/ModalView";
 
-import { useUiContext } from "@src/contexts/Namechange";
+import { useUiContext } from "@src/contexts/UiContext";
 import { BEZIER_250 } from "@src/styles/composed";
 import { theme } from "@src/styles/theme";
 

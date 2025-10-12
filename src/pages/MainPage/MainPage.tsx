@@ -8,7 +8,7 @@ import { LapList } from "@src/components/LapList/LapList";
 import { ButtonsView } from "@src/components/ButtonsView/ButtonsView";
 import { NavBarView } from "@src/components/NavBarView/NavBarView";
 
-import { useUiContext } from "@src/contexts/Namechange";
+import { useUiContext } from "@src/contexts/UiContext";
 import { theme } from "@src/styles/theme";
 
 export const MainPage = () => {

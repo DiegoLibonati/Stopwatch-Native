@@ -4,7 +4,7 @@ import { GlobalTest } from "@src/entities/tests";
 
 import { NavBarView } from "@src/components/NavBarView/NavBarView";
 
-import { UiProvider, useUiContext } from "@src/contexts/Namechange";
+import { UiProvider, useUiContext } from "@src/contexts/UiContext";
 import { CronoProvider, useCronoContext } from "@src/contexts/CronoContext";
 
 import { getMockUiState, mockSkins, mockUiState } from "@tests/jest.constants";
@@ -45,7 +45,7 @@ jest.mock("@src/constants/skins", () => {
   const { mockSkins } = jest.requireActual("@tests/jest.constants");
   return { __esModule: true, default: mockSkins };
 });
-jest.mock("@src/contexts/UIContext", () => ({
+jest.mock("@src/contexts/UiContext", () => ({
   ...jest.requireActual("@src/contexts/UiContext"),
   useUiContext: jest.fn(),
 }));
