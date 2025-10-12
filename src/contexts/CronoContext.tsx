@@ -3,13 +3,13 @@ import { createContext, useContext, useState } from "react";
 import { CronoContext as CronoContextT } from "@src/entities/contexts";
 import { CronoState } from "@src/entities/states";
 import { Skin } from "@src/entities/app";
-import { CronoContextProps } from "@src/entities/props";
+import { CronoProviderProps } from "@src/entities/props";
 
 import skins from "@src/constants/skins";
 
 export const CronoContext = createContext<CronoContextT | null>(null);
 
-export const CronoProvider: React.FunctionComponent<CronoContextProps> = ({
+export const CronoProvider: React.FunctionComponent<CronoProviderProps> = ({
   children,
 }) => {
   const [cronoState, setCronoState] = useState<CronoState>({

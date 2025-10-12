@@ -8,8 +8,8 @@ export interface LapProps {
   lap: Lap;
 }
 
-export interface CronoContextProps extends DefaultProps {}
+export interface CronoProviderProps extends DefaultProps {}
 
-export interface LapsContextProps extends DefaultProps {}
+export interface LapsProviderProps extends DefaultProps {}
 
-export interface UiContextProps extends DefaultProps {}
+export interface UiProviderProps extends DefaultProps {}

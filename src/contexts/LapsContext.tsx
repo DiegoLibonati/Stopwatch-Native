@@ -1,12 +1,12 @@
 import { createContext, useContext, useState } from "react";
 
 import { LapsContext as LapsContextT } from "@src/entities/contexts";
-import { LapsContextProps } from "@src/entities/props";
+import { LapsProviderProps } from "@src/entities/props";
 import { LapsState } from "@src/entities/states";
 
 export const LapsContext = createContext<LapsContextT | null>(null);
 
-export const LapsProvider: React.FunctionComponent<LapsContextProps> = ({
+export const LapsProvider: React.FunctionComponent<LapsProviderProps> = ({
   children,
 }) => {
   const [lapsState, setLapsState] = useState<LapsState>({

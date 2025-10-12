@@ -2,11 +2,11 @@ import { createContext, useContext, useState } from "react";
 
 import { UiContext as UiContextT } from "@src/entities/contexts";
 import { UiState } from "@src/entities/states";
-import { UiContextProps } from "@src/entities/props";
+import { UiProviderProps } from "@src/entities/props";
 
 export const UiContext = createContext<UiContextT | null>(null);
 
-export const UiProvider: React.FunctionComponent<UiContextProps> = ({
+export const UiProvider: React.FunctionComponent<UiProviderProps> = ({
   children,
 }) => {
   const [uiState, setUiState] = useState<UiState>({
