@@ -4,7 +4,7 @@ import { GlobalTest } from "@src/entities/tests";
 
 import { SkinList } from "@src/components/SkinList/SkinList";
 
-import { UiProvider, useUiContext } from "@src/contexts/UIContext";
+import { UiProvider, useUiContext } from "@src/contexts/Namechange";
 import { CronoProvider, useCronoContext } from "@src/contexts/CronoContext";
 
 import { mockSkins } from "@tests/jest.constants";

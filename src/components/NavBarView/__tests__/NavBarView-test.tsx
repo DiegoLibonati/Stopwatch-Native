@@ -2,9 +2,9 @@ import { fireEvent, render } from "@testing-library/react-native";
 
 import { GlobalTest } from "@src/entities/tests";
 
-import { NavBar } from "@src/components/NavBar/NavBar";
+import { NavBarView } from "@src/components/NavBarView/NavBarView";
 
-import { UiProvider, useUiContext } from "@src/contexts/UIContext";
+import { UiProvider, useUiContext } from "@src/contexts/Namechange";
 import { CronoProvider, useCronoContext } from "@src/contexts/CronoContext";
 
 import { getMockUiState, mockSkins, mockUiState } from "@tests/jest.constants";
@@ -22,7 +22,7 @@ const renderComponent = (): RenderComponent => {
   } = render(
     <CronoProvider>
       <UiProvider>
-        <NavBar></NavBar>
+        <NavBarView></NavBarView>
       </UiProvider>
     </CronoProvider>
   );

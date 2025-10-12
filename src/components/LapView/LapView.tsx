@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 
-import { LapProps } from "@src/entities/props";
+import { LapViewProps } from "@src/entities/props";
 
 import { theme } from "@src/styles/theme";
 
-export const Lap = ({ lap }: LapProps) => {
+export const LapView = ({ lap }: LapViewProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.lapNumber}>{lap.lapNumber}</Text>

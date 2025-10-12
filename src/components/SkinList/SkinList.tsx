@@ -4,7 +4,7 @@ import { Image } from "expo-image";
 import { Skin } from "@src/entities/app";
 
 import { useCronoContext } from "@src/contexts/CronoContext";
-import { useUiContext } from "@src/contexts/UIContext";
+import { useUiContext } from "@src/contexts/Namechange";
 import skins from "@src/constants/skins";
 import { theme } from "@src/styles/theme";
 

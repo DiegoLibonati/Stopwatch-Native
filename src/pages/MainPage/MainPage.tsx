@@ -4,11 +4,11 @@ import Constants from "expo-constants";
 import { Ionicons } from "@expo/vector-icons";
 
 import { WatchView } from "@src/components/WatchView/WatchView";
-import { LapsView } from "@src/components/LapsView/LapsView";
+import { LapList } from "@src/components/LapList/LapList";
 import { ButtonsView } from "@src/components/ButtonsView/ButtonsView";
-import { NavBar } from "@src/components/NavBar/NavBar";
+import { NavBarView } from "@src/components/NavBarView/NavBarView";
 
-import { useUiContext } from "@src/contexts/UIContext";
+import { useUiContext } from "@src/contexts/Namechange";
 import { theme } from "@src/styles/theme";
 
 export const MainPage = () => {
@@ -22,14 +22,18 @@ export const MainPage = () => {
     <Fragment>
       <View style={styles.container}>
         <WatchView></WatchView>
-        <LapsView></LapsView>
+        <LapList></LapList>
         <ButtonsView></ButtonsView>
 
-        <TouchableOpacity onPress={handlePressMenu} style={styles.buttonNav} testID="open-nav">
+        <TouchableOpacity
+          onPress={handlePressMenu}
+          style={styles.buttonNav}
+          testID="open-nav"
+        >
           <Ionicons name="menu" size={30} color={theme.colors.primaryColor} />
         </TouchableOpacity>
       </View>
-      <NavBar></NavBar>
+      <NavBarView></NavBarView>
     </Fragment>
   );
 };

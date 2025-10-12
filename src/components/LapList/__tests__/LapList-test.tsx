@@ -2,7 +2,7 @@ import { render } from "@testing-library/react-native";
 
 import { GlobalTest } from "@src/entities/tests";
 
-import { LapsView } from "@src/components/LapsView/LapsView";
+import { LapList } from "@src/components/LapList/LapList";
 
 import { LapsProvider, useLapsContext } from "@src/contexts/LapsContext";
 
@@ -13,7 +13,7 @@ type RenderComponent = {} & GlobalTest;
 const renderComponent = (): RenderComponent => {
   const { debug, getByText, getByRole, getByTestId } = render(
     <LapsProvider>
-      <LapsView></LapsView>
+      <LapList></LapList>
     </LapsProvider>
   );
 

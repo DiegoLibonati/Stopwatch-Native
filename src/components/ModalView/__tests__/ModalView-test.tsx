@@ -2,9 +2,9 @@ import { fireEvent, render } from "@testing-library/react-native";
 
 import { GlobalTest } from "@src/entities/tests";
 
-import { Modal } from "@src/components/Modal/Modal";
+import { ModalView } from "@src/components/ModalView/ModalView";
 
-import { UiProvider, useUiContext } from "@src/contexts/UIContext";
+import { UiProvider, useUiContext } from "@src/contexts/Namechange";
 
 import { getMockUiState, mockUiState } from "@tests/jest.constants";
 
@@ -13,7 +13,7 @@ type RenderComponent = {} & GlobalTest;
 const renderComponent = (): RenderComponent => {
   const { debug, getByText, getByRole, getByTestId, queryByText } = render(
     <UiProvider>
-      <Modal></Modal>
+      <ModalView></ModalView>
     </UiProvider>
   );
 

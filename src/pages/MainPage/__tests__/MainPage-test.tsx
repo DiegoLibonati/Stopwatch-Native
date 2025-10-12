@@ -5,7 +5,7 @@ import { GlobalTest } from "@src/entities/tests";
 import { MainPage } from "@src/pages/MainPage/MainPage";
 
 import { CronoProvider } from "@src/contexts/CronoContext";
-import { UiProvider, useUiContext } from "@src/contexts/UIContext";
+import { UiProvider, useUiContext } from "@src/contexts/Namechange";
 import { LapsProvider } from "@src/contexts/LapsContext";
 
 import { getMockUiState, mockUiState } from "@tests/jest.constants";

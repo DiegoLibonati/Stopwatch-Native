@@ -6,10 +6,10 @@ import {
   Pressable,
 } from "react-native";
 
-import { useUiContext } from "@src/contexts/UIContext";
+import { useUiContext } from "@src/contexts/Namechange";
 import { theme } from "@src/styles/theme";
 
-export const Modal = () => {
+export const ModalView = () => {
   const { uiState, closeModal } = useUiContext();
 
   const handlePressClose = (): void => {
