@@ -3,9 +3,11 @@ import { Image } from "expo-image";
 
 import { Skin } from "@src/entities/app";
 
-import { useCronoContext } from "@src/contexts/CronoContext";
-import { useUiContext } from "@src/contexts/UiContext";
+import { useCronoContext } from "@src/hooks/useCronoContext";
+import { useUiContext } from "@src/hooks/useUiContext";
+
 import skins from "@src/constants/skins";
+
 import { theme } from "@src/styles/theme";
 
 export const SkinList = () => {

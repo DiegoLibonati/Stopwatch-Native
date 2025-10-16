@@ -8,7 +8,8 @@ import { LapList } from "@src/components/LapList/LapList";
 import { ActionButtons } from "@src/components/ActionButtons/ActionButtons";
 import { NavBar } from "@src/components/NavBar/NavBar";
 
-import { useUiContext } from "@src/contexts/UiContext";
+import { useUiContext } from "@src/hooks/useUiContext";
+
 import { theme } from "@src/styles/theme";
 
 export const MainPage = () => {

@@ -2,7 +2,7 @@ import { FlatList, StyleSheet } from "react-native";
 
 import { Lap } from "@src/components/Lap/Lap";
 
-import { useLapsContext } from "@src/contexts/LapsContext";
+import { useLapsContext } from "@src/hooks/useLapsContext";
 
 export const LapList = () => {
   const { lapsState } = useLapsContext();

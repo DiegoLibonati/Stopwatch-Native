@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 import { Image } from "expo-image";
 
-import { useCronoContext } from "@src/contexts/CronoContext";
+import { useCronoContext } from "@src/hooks/useCronoContext";
+
 import { theme } from "@src/styles/theme";
 
 export const Watch = () => {

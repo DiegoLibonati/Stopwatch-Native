@@ -4,7 +4,9 @@ import { GlobalTest } from "@src/entities/tests";
 
 import { Watch } from "@src/components/Watch/Watch";
 
-import { CronoProvider, useCronoContext } from "@src/contexts/CronoContext";
+import { CronoProvider } from "@src/contexts/CronoContext";
+
+import { useCronoContext } from "@src/hooks/useCronoContext";
 
 import { getMockCronoState, mockCronoState } from "@tests/jest.constants";
 
@@ -38,8 +40,7 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-jest.mock("@src/contexts/CronoContext", () => ({
-  ...jest.requireActual("@src/contexts/CronoContext"),
+jest.mock("@src/hooks/useCronoContext", () => ({
   useCronoContext: jest.fn(),
 }));
 

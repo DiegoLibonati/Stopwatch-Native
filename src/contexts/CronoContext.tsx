@@ -103,9 +103,3 @@ export const CronoProvider: React.FunctionComponent<CronoProviderProps> = ({
     </CronoContext.Provider>
   );
 };
-
-export const useCronoContext = (): CronoContextT => {
-  const context = useContext(CronoContext);
-  if (!context) throw new Error("useCronoContext must be used within CronoProvider");
-  return context;
-};

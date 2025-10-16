@@ -4,7 +4,9 @@ import { GlobalTest } from "@src/entities/tests";
 
 import { Modal } from "@src/components/Modal/Modal";
 
-import { UiProvider, useUiContext } from "@src/contexts/UiContext";
+import { UiProvider } from "@src/contexts/UiContext";
+
+import { useUiContext } from "@src/hooks/useUiContext";
 
 import { getMockUiState, mockUiState } from "@tests/jest.constants";
 
@@ -30,8 +32,7 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-jest.mock("@src/contexts/UiContext", () => ({
-  ...jest.requireActual("@src/contexts/UiContext"),
+jest.mock("@src/hooks/useUiContext", () => ({
   useUiContext: jest.fn(),
 }));
 

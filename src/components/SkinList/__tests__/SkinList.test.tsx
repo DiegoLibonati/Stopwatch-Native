@@ -4,8 +4,11 @@ import { GlobalTest } from "@src/entities/tests";
 
 import { SkinList } from "@src/components/SkinList/SkinList";
 
-import { UiProvider, useUiContext } from "@src/contexts/UiContext";
-import { CronoProvider, useCronoContext } from "@src/contexts/CronoContext";
+import { UiProvider } from "@src/contexts/UiContext";
+import { CronoProvider } from "@src/contexts/CronoContext";
+
+import { useUiContext } from "@src/hooks/useUiContext";
+import { useCronoContext } from "@src/hooks/useCronoContext";
 
 import { mockSkins } from "@tests/jest.constants";
 
@@ -45,12 +48,10 @@ jest.mock("@src/constants/skins", () => {
   const { mockSkins } = jest.requireActual("@tests/jest.constants");
   return { __esModule: true, default: mockSkins };
 });
-jest.mock("@src/contexts/UiContext", () => ({
-  ...jest.requireActual("@src/contexts/UiContext"),
+jest.mock("@src/hooks/useUiContext", () => ({
   useUiContext: jest.fn(),
 }));
-jest.mock("@src/contexts/CronoContext", () => ({
-  ...jest.requireActual("@src/contexts/CronoContext"),
+jest.mock("@src/hooks/useCronoContext", () => ({
   useCronoContext: jest.fn(),
 }));
 

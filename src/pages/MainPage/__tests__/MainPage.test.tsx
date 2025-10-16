@@ -5,8 +5,10 @@ import { GlobalTest } from "@src/entities/tests";
 import { MainPage } from "@src/pages/MainPage/MainPage";
 
 import { CronoProvider } from "@src/contexts/CronoContext";
-import { UiProvider, useUiContext } from "@src/contexts/UiContext";
+import { UiProvider } from "@src/contexts/UiContext";
 import { LapsProvider } from "@src/contexts/LapsContext";
+
+import { useUiContext } from "@src/hooks/useUiContext";
 
 import { getMockUiState, mockUiState } from "@tests/jest.constants";
 
@@ -44,8 +46,7 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-jest.mock("@src/contexts/UiContext", () => ({
-  ...jest.requireActual("@src/contexts/UiContext"),
+jest.mock("@src/hooks/useUiContext", () => ({
   useUiContext: jest.fn(),
 }));
 

@@ -9,8 +9,10 @@ import Animated, {
 import { SkinList } from "@src/components/SkinList/SkinList";
 import { Modal } from "@src/components/Modal/Modal";
 
-import { useUiContext } from "@src/contexts/UiContext";
+import { useUiContext } from "@src/hooks/useUiContext";
+
 import { BEZIER_250 } from "@src/styles/composed";
+
 import { theme } from "@src/styles/theme";
 
 export const NavBar = () => {

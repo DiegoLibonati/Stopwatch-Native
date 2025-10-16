@@ -6,8 +6,9 @@ import {
   View,
 } from "react-native";
 
-import { useCronoContext } from "@src/contexts/CronoContext";
-import { useLapsContext } from "@src/contexts/LapsContext";
+import { useCronoContext } from "@src/hooks/useCronoContext";
+import { useLapsContext } from "@src/hooks/useLapsContext";
+
 import { theme } from "@src/styles/theme";
 
 export const ActionButtons = () => {

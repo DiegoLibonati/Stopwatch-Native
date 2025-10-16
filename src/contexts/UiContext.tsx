@@ -61,9 +61,3 @@ export const UiProvider: React.FunctionComponent<UiProviderProps> = ({
     </UiContext.Provider>
   );
 };
-
-export const useUiContext = (): UiContextT => {
-  const context = useContext(UiContext);
-  if (!context) throw new Error("useUiContext must be used within UiProvider");
-  return context;
-};

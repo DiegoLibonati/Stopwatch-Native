@@ -4,8 +4,11 @@ import { GlobalTest } from "@src/entities/tests";
 
 import { ActionButtons } from "@src/components/ActionButtons/ActionButtons";
 
-import { CronoProvider, useCronoContext } from "@src/contexts/CronoContext";
-import { LapsProvider, useLapsContext } from "@src/contexts/LapsContext";
+import { CronoProvider } from "@src/contexts/CronoContext";
+import { LapsProvider } from "@src/contexts/LapsContext";
+
+import { useCronoContext } from "@src/hooks/useCronoContext";
+import { useLapsContext } from "@src/hooks/useLapsContext";
 
 import { getMockCronoState, mockCronoState } from "@tests/jest.constants";
 
@@ -30,13 +33,11 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-jest.mock("@src/contexts/CronoContext", () => ({
-  ...jest.requireActual("@src/contexts/CronoContext"),
+jest.mock("@src/hooks/useCronoContext", () => ({
   useCronoContext: jest.fn(),
 }));
 
-jest.mock("@src/contexts/LapsContext", () => ({
-  ...jest.requireActual("@src/contexts/LapsContext"),
+jest.mock("@src/hooks/useLapsContext", () => ({
   useLapsContext: jest.fn(),
 }));
 

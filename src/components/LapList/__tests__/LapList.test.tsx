@@ -4,7 +4,9 @@ import { GlobalTest } from "@src/entities/tests";
 
 import { LapList } from "@src/components/LapList/LapList";
 
-import { LapsProvider, useLapsContext } from "@src/contexts/LapsContext";
+import { LapsProvider } from "@src/contexts/LapsContext";
+
+import { useLapsContext } from "@src/hooks/useLapsContext";
 
 import { getMockLapsState, mockLapsState } from "@tests/jest.constants";
 
@@ -27,8 +29,7 @@ const renderComponent = (): RenderComponent => {
   };
 };
 
-jest.mock("@src/contexts/LapsContext", () => ({
-  ...jest.requireActual("@src/contexts/LapsContext"),
+jest.mock("@src/hooks/useLapsContext", () => ({
   useLapsContext: jest.fn(),
 }));
 

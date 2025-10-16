@@ -42,9 +42,3 @@ export const LapsProvider: React.FunctionComponent<LapsProviderProps> = ({
     </LapsContext.Provider>
   );
 };
-
-export const useLapsContext = (): LapsContextT => {
-  const context = useContext(LapsContext);
-  if (!context) throw new Error("useLapsContext must be used within LapsProvider");
-  return context;
-};
