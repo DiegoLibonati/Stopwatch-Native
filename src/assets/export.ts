@@ -1,21 +1,21 @@
 const assets = {
-  app: {
-    adaptiveIcon: require("@src/assets/app/adaptive-icon.png"),
-    favicon: require("@src/assets/app/favicon.png"),
-    icon: require("@src/assets/app/icon.png"),
-    splash: require("@src/assets/app/splash.png"),
+  icons: {
+    adaptiveIcon: require("@src/assets/icons/adaptive-icon.png"),
+    favicon: require("@src/assets/icons/favicon.png"),
+    icon: require("@src/assets/icons/icon.png"),
   },
-  gifs: {
-    classic: require("@src/assets/gifs/classic.gif"),
-    clock: require("@src/assets/gifs/clock.gif"),
-    pikachu: require("@src/assets/gifs/pikachu.gif"),
-    pixelSand: require("@src/assets/gifs/pixel-sand.gif"),
+  splash: {
+    splash: require("@src/assets/splash/splash.png"),
   },
-  pngs: {
-    classic: require("@src/assets/pngs/classic.png"),
-    clock: require("@src/assets/pngs/clock.png"),
-    pikachu: require("@src/assets/pngs/pikachu.png"),
-    pixelSand: require("@src/assets/pngs/pixel-sand.png"),
+  images: {
+    classicGif: require("@src/assets/images/classic.gif"),
+    clockGif: require("@src/assets/images/clock.gif"),
+    pikachuGif: require("@src/assets/images/pikachu.gif"),
+    pixelSandGif: require("@src/assets/images/pixel-sand.gif"),
+    classicStatic: require("@src/assets/images/classic.png"),
+    clockStatic: require("@src/assets/images/clock.png"),
+    pikachuStatic: require("@src/assets/images/pikachu.png"),
+    pixelSandStatic: require("@src/assets/images/pixel-sand.png"),
   },
 };
 

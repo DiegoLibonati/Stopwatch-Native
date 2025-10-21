@@ -6,14 +6,14 @@ export const mockSkins = [
   {
     id: "clock1",
     name: "Normal",
-    static: assets.pngs.clock,
-    dinamic: assets.gifs.clock,
+    static: assets.images.clockStatic,
+    dinamic: assets.images.clockGif,
   },
   {
     id: "clock2",
     name: "Classic",
-    static: assets.pngs.classic,
-    dinamic: assets.gifs.classic,
+    static: assets.images.classicStatic,
+    dinamic: assets.images.classicGif,
   },
 ];
 
