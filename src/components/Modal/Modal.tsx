@@ -1,16 +1,12 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Modal as ModalExpo,
-  Pressable,
-} from "react-native";
+import { StyleSheet, Text, View, Modal as ModalExpo, Pressable } from "react-native";
 
-import { useUiContext } from "@src/hooks/useUiContext";
+import type { JSX } from "react";
 
-import { theme } from "@src/styles/theme";
+import { useUiContext } from "@/hooks/useUiContext";
 
-export const Modal = () => {
+import { theme } from "@/styles/theme";
+
+const Modal = (): JSX.Element => {
   const { uiState, closeModal } = useUiContext();
 
   const handlePressClose = (): void => {
@@ -19,11 +15,7 @@ export const Modal = () => {
 
   return (
     <View style={styles.centeredView}>
-      <ModalExpo
-        animationType="fade"
-        transparent={true}
-        visible={uiState.modal.isModalOpen}
-      >
+      <ModalExpo animationType="fade" transparent={true} visible={uiState.modal.isModalOpen}>
         <View style={{ ...styles.centeredView, ...styles.rootModalView }}>
           <View style={styles.modalView}>
             <Text style={styles.textModal}>{uiState.modal.content}</Text>
@@ -39,7 +31,7 @@ export const Modal = () => {
 
 const styles = StyleSheet.create({
   rootModalView: {
-    backgroundColor: `rgba(${theme.colors.blackInt}, 0.5)`,
+    backgroundColor: theme.colors.overlay,
   },
   centeredView: {
     flex: 1,
@@ -55,16 +47,18 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   textModal: {
-    fontSize: theme.fontSize.md,
+    fontSize: theme.typography.sizes.md,
   },
   buttonModal: {
-    backgroundColor: theme.colors.primaryColor,
+    backgroundColor: theme.colors.primary,
     padding: 10,
     borderRadius: 20,
     marginTop: 20,
   },
   textButtonModal: {
     color: theme.colors.white,
-    fontSize: theme.fontSize.sm,
+    fontSize: theme.typography.sizes.sm,
   },
 });
+
+export default Modal;

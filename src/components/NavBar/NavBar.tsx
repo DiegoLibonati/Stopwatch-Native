@@ -1,48 +1,39 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import Constants from "expo-constants";
 import { Ionicons } from "@expo/vector-icons";
-import Animated, {
-  useAnimatedStyle,
-  withTiming,
-} from "react-native-reanimated";
+import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
 
-import { SkinList } from "@src/components/SkinList/SkinList";
-import { Modal } from "@src/components/Modal/Modal";
+import type { JSX } from "react";
 
-import { useUiContext } from "@src/hooks/useUiContext";
+import SkinList from "@/components/SkinList/SkinList";
+import Modal from "@/components/Modal/Modal";
 
-import { BEZIER_250 } from "@src/styles/composed";
+import { useUiContext } from "@/hooks/useUiContext";
 
-import { theme } from "@src/styles/theme";
+import { BEZIER_250 } from "@/styles/composed";
+import { theme } from "@/styles/theme";
 
-export const NavBar = () => {
+const NavBar = (): JSX.Element => {
   const { uiState, closeNavBar } = useUiContext();
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
       transform: [
         {
-          translateX: withTiming(
-            uiState.navBar.isNavBarOpen ? 0 : 5000,
-            BEZIER_250
-          ),
+          translateX: withTiming(uiState.navBar.isNavBarOpen ? 0 : 5000, BEZIER_250),
         },
       ],
       opacity: withTiming(uiState.navBar.isNavBarOpen ? 1 : 0, BEZIER_250),
     };
   });
 
-  const handlePressClose = () => {
+  const handlePressClose = (): void => {
     closeNavBar();
   };
 
   return (
     <Animated.View style={[styles.container, animatedStyle]}>
-      <TouchableOpacity
-        style={styles.close}
-        onPress={handlePressClose}
-        testID="close-navbar"
-      >
+      <TouchableOpacity style={styles.close} onPress={handlePressClose} testID="close-navbar">
         <Ionicons name="close" size={30} color={theme.colors.white} />
       </TouchableOpacity>
       <Text style={styles.title}>SKINS</Text>
@@ -54,7 +45,7 @@ export const NavBar = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.colors.primaryColor,
+    backgroundColor: theme.colors.primary,
     flex: 1,
     position: "absolute",
     top: 0,
@@ -70,7 +61,9 @@ const styles = StyleSheet.create({
   },
   title: {
     alignSelf: "center",
-    fontSize: theme.fontSize.xl,
+    fontSize: theme.typography.sizes.xl,
     color: theme.colors.white,
   },
 });
+
+export default NavBar;

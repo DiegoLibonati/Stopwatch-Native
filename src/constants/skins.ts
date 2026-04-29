@@ -1,6 +1,6 @@
-import { Skin } from "@src/entities/app";
+import type { Skin } from "@/types/app";
 
-import assets from "@src/assets/export";
+import assets from "@/assets/export";
 
 const skins: Skin[] = [
   {

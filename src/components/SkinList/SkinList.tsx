@@ -1,16 +1,17 @@
 import { FlatList, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 
-import { Skin } from "@src/entities/app";
+import type { JSX } from "react";
+import type { Skin } from "@/types/app";
 
-import { useCronoContext } from "@src/hooks/useCronoContext";
-import { useUiContext } from "@src/hooks/useUiContext";
+import { useCronoContext } from "@/hooks/useCronoContext";
+import { useUiContext } from "@/hooks/useUiContext";
 
-import skins from "@src/constants/skins";
+import skins from "@/constants/skins";
 
-import { theme } from "@src/styles/theme";
+import { theme } from "@/styles/theme";
 
-export const SkinList = () => {
+const SkinList = (): JSX.Element => {
   const { changeSkin } = useCronoContext();
   const { openModal } = useUiContext();
 
@@ -28,13 +29,11 @@ export const SkinList = () => {
             key={item.id}
             style={styles.clockContainer}
             testID="skin"
-            onPress={() => handlePressSkin(item)}
+            onPress={() => {
+              handlePressSkin(item);
+            }}
           >
-            <Image
-              source={item.dinamic}
-              style={styles.clockImage}
-              contentFit="contain"
-            ></Image>
+            <Image source={item.dinamic} style={styles.clockImage} contentFit="contain"></Image>
             <Text style={styles.text}>{item.name}</Text>
           </TouchableOpacity>
         );
@@ -62,6 +61,8 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 3,
-    fontSize: theme.fontSize.lg,
+    fontSize: theme.typography.sizes.lg,
   },
 });
+
+export default SkinList;

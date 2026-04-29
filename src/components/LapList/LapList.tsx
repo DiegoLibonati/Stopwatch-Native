@@ -1,10 +1,12 @@
 import { FlatList, StyleSheet } from "react-native";
 
-import { Lap } from "@src/components/Lap/Lap";
+import type { JSX } from "react";
 
-import { useLapsContext } from "@src/hooks/useLapsContext";
+import Lap from "@/components/Lap/Lap";
 
-export const LapList = () => {
+import { useLapsContext } from "@/hooks/useLapsContext";
+
+const LapList = (): JSX.Element => {
   const { lapsState } = useLapsContext();
 
   return (
@@ -23,3 +25,5 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
+
+export default LapList;

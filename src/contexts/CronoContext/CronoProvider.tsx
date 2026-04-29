@@ -1,0 +1,105 @@
+import { useState } from "react";
+
+import type { JSX } from "react";
+import type { CronoState } from "@/types/states";
+import type { Skin } from "@/types/app";
+import type { CronoProviderProps } from "@/types/props";
+
+import { CronoContext } from "@/contexts/CronoContext/CronoContext";
+
+import skins from "@/constants/skins";
+
+export const CronoProvider: React.FunctionComponent<CronoProviderProps> = ({
+  children,
+}): JSX.Element => {
+  const [cronoState, setCronoState] = useState<CronoState>({
+    timer: "00:00:00",
+    isTimerOn: false,
+    idInterval: null,
+    currentSkin: skins[0],
+  });
+
+  const startCrono = (): void => {
+    const { timer, idInterval } = cronoState;
+
+    if (idInterval) return;
+
+    const timeSplit = timer.split(":");
+
+    let hours = Number(timeSplit[0]) ? Number(timeSplit[0]) : 0;
+    let minutes = Number(timeSplit[1]) ? Number(timeSplit[1]) : 0;
+    let seconds = Number(timeSplit[2]) ? Number(timeSplit[2]) : 0;
+
+    const interval = setInterval(() => {
+      seconds += 1;
+
+      if (seconds === 60) {
+        minutes += 1;
+        seconds = 0;
+      }
+
+      if (minutes === 60) {
+        hours += 1;
+        minutes = 0;
+      }
+
+      const secondsAux = seconds < 10 ? `0${seconds}` : seconds;
+      const minutesAux = minutes < 10 ? `0${minutes}` : minutes;
+      const hoursAux = hours < 10 ? `0${hours}` : hours;
+
+      setCronoState((state) => ({
+        ...state,
+        timer: `${hoursAux}:${minutesAux}:${secondsAux}`,
+        isTimerOn: true,
+      }));
+    }, 1000);
+
+    setCronoState((state) => ({
+      ...state,
+      idInterval: interval,
+    }));
+  };
+
+  const clearCrono = (): void => {
+    const { idInterval } = cronoState;
+
+    clearInterval(idInterval!);
+
+    setCronoState((state) => ({
+      ...state,
+      timer: "00:00:00",
+      isTimerOn: false,
+      idInterval: null,
+    }));
+  };
+
+  const stopCrono = (): void => {
+    const { idInterval } = cronoState;
+
+    clearInterval(idInterval!);
+
+    setCronoState((state) => ({
+      ...state,
+      isTimerOn: false,
+      idInterval: null,
+    }));
+  };
+
+  const changeSkin = (skin: Skin): void => {
+    setCronoState((state) => ({ ...state, currentSkin: skin }));
+  };
+
+  return (
+    <CronoContext.Provider
+      value={{
+        cronoState: cronoState,
+        startCrono: startCrono,
+        clearCrono: clearCrono,
+        stopCrono: stopCrono,
+        changeSkin: changeSkin,
+      }}
+    >
+      {children}
+    </CronoContext.Provider>
+  );
+};

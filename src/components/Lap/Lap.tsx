@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 
-import { LapProps } from "@src/entities/props";
+import type { JSX } from "react";
+import type { LapProps } from "@/types/props";
 
-import { theme } from "@src/styles/theme";
+import { theme } from "@/styles/theme";
 
-export const Lap = ({ lap }: LapProps) => {
+const Lap = ({ lap }: LapProps): JSX.Element => {
   return (
     <View style={styles.container}>
       <Text style={styles.lapNumber}>{lap.lapNumber}</Text>
@@ -27,15 +28,17 @@ const styles = StyleSheet.create({
   lapNumber: {
     textAlign: "center",
     textAlignVertical: "center",
-    fontSize: theme.fontSize.sm,
+    fontSize: theme.typography.sizes.sm,
     width: 33,
     height: 33,
     borderRadius: 1000,
     borderWidth: 2,
-    color: theme.colors.primaryColor,
-    borderColor: theme.colors.primaryColor,
+    color: theme.colors.primary,
+    borderColor: theme.colors.primary,
   },
   lapTime: {
-    fontSize: theme.fontSize.lg,
+    fontSize: theme.typography.sizes.lg,
   },
 });
+
+export default Lap;

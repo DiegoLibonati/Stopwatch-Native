@@ -1,12 +1,11 @@
 import { useContext } from "react";
 
-import { UseCronoContext } from "@src/entities/hooks";
+import type { UseCronoContext } from "@/types/hooks";
 
-import { CronoContext } from "@src/contexts/CronoContext";
+import { CronoContext } from "@/contexts/CronoContext/CronoContext";
 
 export const useCronoContext = (): UseCronoContext => {
   const context = useContext(CronoContext);
-  if (!context)
-    throw new Error("useCronoContext must be used within CronoProvider");
+  if (!context) throw new Error("useCronoContext must be used within CronoProvider");
   return context;
 };

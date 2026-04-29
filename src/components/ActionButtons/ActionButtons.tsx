@@ -1,17 +1,13 @@
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-import { useCronoContext } from "@src/hooks/useCronoContext";
-import { useLapsContext } from "@src/hooks/useLapsContext";
+import type { JSX } from "react";
 
-import { theme } from "@src/styles/theme";
+import { useCronoContext } from "@/hooks/useCronoContext";
+import { useLapsContext } from "@/hooks/useLapsContext";
 
-export const ActionButtons = () => {
+import { theme } from "@/styles/theme";
+
+const ActionButtons = (): JSX.Element => {
   const { cronoState, startCrono, clearCrono, stopCrono } = useCronoContext();
   const { addNewLap, clearLaps } = useLapsContext();
 
@@ -25,8 +21,12 @@ export const ActionButtons = () => {
   };
 
   const handlePressStartOrStop = (): void => {
-    if (cronoState.isTimerOn) return stopCrono();
-    return startCrono();
+    if (cronoState.isTimerOn) {
+      stopCrono();
+      return;
+    }
+
+    startCrono();
   };
 
   return (
@@ -39,11 +39,7 @@ export const ActionButtons = () => {
         <Text style={styles.buttonText}>CLEAR</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.touchable}
-        onPress={handlePressLap}
-        testID="lap-touchable"
-      >
+      <TouchableOpacity style={styles.touchable} onPress={handlePressLap} testID="lap-touchable">
         <Text style={styles.buttonText}>LAP</Text>
       </TouchableOpacity>
 
@@ -52,9 +48,7 @@ export const ActionButtons = () => {
         onPress={handlePressStartOrStop}
         testID="stop-or-and-touchable"
       >
-        <Text style={styles.buttonText}>
-          {cronoState.isTimerOn ? "STOP" : "START"}
-        </Text>
+        <Text style={styles.buttonText}>{cronoState.isTimerOn ? "STOP" : "START"}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -76,8 +70,10 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   buttonText: {
-    color: theme.colors.primaryColor,
+    color: theme.colors.primary,
     fontWeight: "700",
-    fontSize: theme.fontSize.sm,
+    fontSize: theme.typography.sizes.sm,
   },
 });
+
+export default ActionButtons;
