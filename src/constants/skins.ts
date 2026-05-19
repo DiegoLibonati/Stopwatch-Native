@@ -1,8 +1,8 @@
 import type { Skin } from "@/types/app";
 
-import assets from "@/assets/export";
+import assets from "@/assets/index";
 
-const skins: Skin[] = [
+const skins: [Skin, ...Skin[]] = [
   {
     id: "clock1",
     name: "Normal",

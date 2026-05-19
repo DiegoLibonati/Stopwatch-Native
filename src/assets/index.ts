@@ -7,7 +7,7 @@ import clockStatic from "@/assets/images/clock.png";
 import pikachuStatic from "@/assets/images/pikachu.png";
 import pixelSandStatic from "@/assets/images/pixel-sand.png";
 
-const assets = {
+export default {
   images: {
     classicGif,
     clockGif,
@@ -19,5 +19,3 @@ const assets = {
     pixelSandStatic,
   },
 };
-
-export default assets;
