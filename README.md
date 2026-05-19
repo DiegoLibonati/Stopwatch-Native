@@ -40,11 +40,13 @@ The runtime depends on the Expo SDK 54 ecosystem and Reanimated for native-drive
 "expo-router": "~6.0.23"
 "expo-status-bar": "~3.0.9"
 "react": "19.1.0"
+"react-dom": "19.1.0"
 "react-native": "0.81.5"
 "react-native-reanimated": "~4.1.1"
 "react-native-worklets": "0.5.1"
 "react-native-safe-area-context": "~5.6.0"
 "react-native-screens": "~4.16.0"
+"react-native-web": "^0.21.0"
 ```
 
 #### devDependencies
@@ -75,6 +77,16 @@ The runtime depends on the Expo SDK 54 ecosystem and Reanimated for native-drive
 
 ## Getting Started
 
+### Prerequisites
+
+Lapstr targets **Node.js 22+** (enforced via `engines` in `package.json` and `engine-strict=true` in `.npmrc`). A `.nvmrc` file is included, so if you use `nvm` you can simply run `nvm use` from the project root to switch to the correct version.
+
+### Editor setup
+
+A `.editorconfig` file and a `.vscode/extensions.json` recommendation list ship with the repo. When you open the project in VS Code, you will be prompted to install the recommended extensions (ESLint, Prettier, EditorConfig, Expo Tools, Jest, Error Lens, and more) that align with the project's lint, format, and test workflows.
+
+### Run locally
+
 With the stack in mind, follow these steps to run Lapstr locally:
 
 1. Clone the repository
@@ -95,6 +107,59 @@ For coverage report:
 
 ```bash
 npm run test:coverage
+```
+
+## Continuous Integration
+
+The repository ships with a **GitHub Actions** pipeline defined in [`.github/workflows/ci.yml`](.github/workflows/ci.yml). It runs automatically on every `push` and `pull_request` targeting the `main` branch and is composed of four sequential jobs that share a common Node.js toolchain (pinned through [`.nvmrc`](.nvmrc)) and an npm cache.
+
+### Pipeline overview
+
+```
+                      ┌─── PR or push to main ───┐
+                      ▼                          ▼
+┌──────────────────────┐  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐
+│   lint-and-audit     │─▶│      testing     │─▶│      bundle      │─▶│   expo-doctor    │
+│ eslint · tsc · prettier│ │ jest --verbose  │  │ expo export       │  │ npx expo-doctor  │
+└──────────────────────┘  └──────────────────┘  └──────────────────┘  └──────────────────┘
+```
+
+### Validation jobs (run on every PR and push to `main`)
+
+1. **`lint-and-audit`** — installs dependencies with `npm ci`, then runs `npm run lint` (ESLint over `src`, `app` and `__tests__`), `npm run typecheck` (`tsc --noEmit` against `tsconfig.app.json`) and `npm run format:check` (Prettier verification).
+2. **`testing`** — runs the full Jest suite with `npm run test`. Depends on `lint-and-audit`.
+3. **`bundle`** — produces a production bundle via `npx expo export --platform all` and uploads the resulting `dist/` directory as an artifact named `expo-dist` (7-day retention, `if-no-files-found: error`). Depends on `testing`.
+4. **`expo-doctor`** — runs `npm run doctor` (`npx expo-doctor`) to validate Expo SDK versions, dependency compatibility and project configuration. Depends on `bundle`.
+
+Every job uses `actions/setup-node@v4` with `node-version-file: .nvmrc` and `cache: npm`, so the runners always match the local Node version declared in `.nvmrc` (Node 22) and reuse the npm cache across jobs.
+
+### Where the build outputs live
+
+| Output                          | Location                                            |
+| ------------------------------- | --------------------------------------------------- |
+| Lint, typecheck and format logs | **Actions** tab on GitHub                           |
+| Jest test logs                  | **Actions** tab on GitHub                           |
+| Expo bundle (`dist/`)           | Workflow run artifact `expo-dist` (7-day retention) |
+| Expo Doctor report              | **Actions** tab on GitHub                           |
+
+> **Note:** the Expo bundle produced by `expo export` is the platform-agnostic JavaScript bundle and is meant for hosting, smoke-testing or downstream EAS builds. Native binaries (`.apk`, `.aab`, `.ipa`) are not produced by this workflow — those are handled separately through Expo Application Services.
+
+### Running the same checks locally
+
+```bash
+# lint-and-audit
+npm run lint
+npm run typecheck
+npm run format:check
+
+# testing
+npm run test
+
+# bundle
+npx expo export --platform all
+
+# expo-doctor
+npm run doctor
 ```
 
 ## Security Audit
@@ -121,13 +186,21 @@ npm run doctor
 
 The audit commands above currently surface one limitation worth documenting:
 
-### npm audit reports 18 vulnerabilities (4 low, 14 moderate)
+### npm audit reports 9 vulnerabilities (5 low, 4 moderate)
 
-Running `npm audit` reports vulnerabilities in `@tootallnate/once`, `postcss`, and `uuid`. All of them are transitive dependencies of Expo's internal toolchain — specifically `jest-expo`, `@expo/cli`, `@expo/metro-config`, and `@expo/config-plugins`. None of these packages are included in the app bundle delivered to end users; they run exclusively on the developer's machine during build and test.
+Running `npm audit` reports vulnerabilities in two transitive packages:
 
-The suggested fix (`npm audit fix --force`) would downgrade `expo` to v49 and `jest-expo` to v47, both of which are incompatible with the current SDK. Do not run it.
+- **`@tootallnate/once`** — reached through `http-proxy-agent` → `jsdom` → `jest-environment-jsdom` → `jest-expo`.
+- **`postcss`** (moderate, XSS via unescaped `</style>` in stringify output) — reached through `@expo/metro-config` → `@expo/cli` → `expo`.
 
-This is a known limitation of the Expo ecosystem tracked upstream. The vulnerabilities will be resolved when Expo updates its internal dependencies. No action is required on the project side.
+Both chains live entirely inside Expo's internal toolchain (`jest-expo`, `@expo/cli`, `@expo/metro-config`). None of these packages are included in the app bundle delivered to end users; they run exclusively on the developer's machine during build and test.
+
+The suggested fix (`npm audit fix --force`) would apply two breaking changes:
+
+- Downgrade `jest-expo` to `47.0.1`, which is incompatible with Expo SDK 54.
+- Move `expo` to `55.0.25`, jumping past the SDK version this project targets (`~54.0.0`) and forcing an SDK migration that has not been validated against the rest of the dependency tree.
+
+Do not run `npm audit fix --force`. This is a known limitation of the Expo ecosystem tracked upstream and will be resolved when Expo updates its internal dependencies. No action is required on the project side.
 
 ## Portfolio Link
 
