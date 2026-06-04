@@ -111,17 +111,17 @@ npm run test:coverage
 
 ## Continuous Integration
 
-The repository ships with a **GitHub Actions** pipeline defined in [`.github/workflows/ci.yml`](.github/workflows/ci.yml). It runs automatically on every `push` and `pull_request` targeting the `main` branch and is composed of four sequential jobs that share a common Node.js toolchain (pinned through [`.nvmrc`](.nvmrc)) and an npm cache.
+The repository ships with a **GitHub Actions** pipeline defined in [`.github/workflows/ci.yml`](.github/workflows/ci.yml). It runs automatically on every `push` and `pull_request` targeting the `main` branch and is composed of three sequential jobs that share a common Node.js toolchain (pinned through [`.nvmrc`](.nvmrc)) and an npm cache.
 
 ### Pipeline overview
 
 ```
                       ┌─── PR or push to main ───┐
                       ▼                          ▼
-┌──────────────────────┐  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐
-│   lint-and-audit     │─▶│      testing     │─▶│      bundle      │─▶│   expo-doctor    │
-│ eslint · tsc · prettier│ │ jest --verbose  │  │ expo export       │  │ npx expo-doctor  │
-└──────────────────────┘  └──────────────────┘  └──────────────────┘  └──────────────────┘
+┌──────────────────────┐  ┌──────────────────┐  ┌──────────────────┐
+│   lint-and-audit     │─▶│      testing     │─▶│      bundle      │
+│ eslint · tsc · prettier│ │ jest --verbose  │  │ expo export       │
+└──────────────────────┘  └──────────────────┘  └──────────────────┘
 ```
 
 ### Validation jobs (run on every PR and push to `main`)
@@ -129,7 +129,6 @@ The repository ships with a **GitHub Actions** pipeline defined in [`.github/wor
 1. **`lint-and-audit`** — installs dependencies with `npm ci`, then runs `npm run lint` (ESLint over `src`, `app` and `__tests__`), `npm run typecheck` (`tsc --noEmit` against `tsconfig.app.json`) and `npm run format:check` (Prettier verification).
 2. **`testing`** — runs the full Jest suite with `npm run test`. Depends on `lint-and-audit`.
 3. **`bundle`** — produces a production bundle via `npx expo export --platform all` and uploads the resulting `dist/` directory as an artifact named `expo-dist` (7-day retention, `if-no-files-found: error`). Depends on `testing`.
-4. **`expo-doctor`** — runs `npm run doctor` (`npx expo-doctor`) to validate Expo SDK versions, dependency compatibility and project configuration. Depends on `bundle`.
 
 Every job uses `actions/setup-node@v4` with `node-version-file: .nvmrc` and `cache: npm`, so the runners always match the local Node version declared in `.nvmrc` (Node 22) and reuse the npm cache across jobs.
 
@@ -140,7 +139,6 @@ Every job uses `actions/setup-node@v4` with `node-version-file: .nvmrc` and `cac
 | Lint, typecheck and format logs | **Actions** tab on GitHub                           |
 | Jest test logs                  | **Actions** tab on GitHub                           |
 | Expo bundle (`dist/`)           | Workflow run artifact `expo-dist` (7-day retention) |
-| Expo Doctor report              | **Actions** tab on GitHub                           |
 
 > **Note:** the Expo bundle produced by `expo export` is the platform-agnostic JavaScript bundle and is meant for hosting, smoke-testing or downstream EAS builds. Native binaries (`.apk`, `.aab`, `.ipa`) are not produced by this workflow — those are handled separately through Expo Application Services.
 
@@ -157,9 +155,6 @@ npm run test
 
 # bundle
 npx expo export --platform all
-
-# expo-doctor
-npm run doctor
 ```
 
 ## Security Audit
